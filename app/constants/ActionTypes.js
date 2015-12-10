@@ -1,0 +1,3 @@
+// COORDINATE HIGHLIGHTS
+export const SET_RAW = 'SET_RAW';
+export const SET_FILTER = 'SET_FILTER';
