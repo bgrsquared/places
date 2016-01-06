@@ -1,0 +1,17 @@
+body {
+  font-weight: 300;
+  padding-right: 0px !important; // fix bootstrap modal
+  min-height: 1000px; // fix bootstrap modal
+}
+
+.modal-open {
+  overflow-y: auto;
+} // again, fix boostrap modal (http://stackoverflow.com/questions/32675849/screen-zooms-in-when-a-bootstrap-modal-is-opened-on-ios-9-safari)
+
+h1, h2, h3, h4 {
+  font-weight: 400;
+}
+
+.fillTransition {
+  transition: fill 1s ease;
+}

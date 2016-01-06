@@ -2,7 +2,7 @@ import test from 'tape';
 import React from 'react';
 import ReactTestUtils from 'react-addons-test-utils';
 
-import Comp from '../app/GUI/someComponent';
+import Comp from '../app/GUI/mainComponent';
 
 test('Testing to Component', expect => {
   const shallowRenderer = ReactTestUtils.createRenderer();

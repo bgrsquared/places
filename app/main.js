@@ -16,18 +16,18 @@ import { createHistory } from 'history';
 import { Route } from 'react-router';
 import { devTools } from 'redux-devtools';
 import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import thunkMiddleware from 'redux-thunk';
+
+require('./style/myStyle.scss');
 
 import coreReducer from './reducers/coreReducer';
 
-import App from './GUI/someContainer';
+import App from './GUI/mainContainer';
 
 // Configure routes like normal
 const routes = (
   <Route path="/" component={App}>
-    <Route path="parent" component={/* Parent */ App}>
-      <Route path="child" component={/* Child */ App}/>
-      <Route path="child/:id" component={/* Child */ App}/>
-    </Route>
+    <Route path="placeNames" component={App}/>
   </Route>
 );
 
@@ -38,7 +38,7 @@ const reducer = combineReducers({
 
 // Compose reduxReactRouter with other store enhancers
 const store = compose(
-  applyMiddleware(/* m1, m2, m3 */),
+  applyMiddleware(thunkMiddleware),
   reduxReactRouter({
     routes,
     createHistory,
@@ -64,7 +64,7 @@ class Root extends Component {
         bsStyle={'danger'}
         key={'dbgBtn'}
         onClick={() => {this.setState({ showDebug: !showDebug }); }}
-      >Debug
+      >Redux Debug (dev mode)
       </Button>);
       debugButton.push(<hr key={'hr'}/>);
       if (showDebug) {
@@ -79,7 +79,6 @@ class Root extends Component {
     return (
       <div>
         {debugButton}
-        <hr/>
         <Provider store={store}>
           <ReduxRouter />
         </Provider>

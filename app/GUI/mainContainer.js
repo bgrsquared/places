@@ -3,7 +3,7 @@ import { pushState } from 'redux-router';
 import { bindActionCreators } from 'redux';
 import * as RawActions from '../actions/RawActions';
 
-import MainComponent from './someComponent';
+import MainComponent from './mainComponent';
 
 function mapStateToProps(state) {
   return {
