@@ -16,7 +16,7 @@ export default class CountryChooserComponent extends Component {
     const { app } = this.props;
     const { country } = app;
 
-    const countries = ['CH', 'DE'];
+    const countries = ['CH', 'DE', 'AT'];
     const btns = [];
     countries.map(c => {
       const style = (c === country ? 'primary' : 'default');

@@ -9,6 +9,11 @@ export const projectionParams = new Map([
     translate: [0, 0],
     scale: 4500,
   }],
+  ['AT', {
+    center: [9.25, 49.5],
+    translate: [0, 0],
+    scale: 2750,
+  }],
 ]);
 
 export const hexbinParams = new Map([
@@ -17,6 +22,10 @@ export const hexbinParams = new Map([
     radius: 3,
   }],
   ['CH', {
+    size: [400, 300],
+    radius: 2.5,
+  }],
+  ['AT', {
     size: [400, 300],
     radius: 2.5,
   }],
@@ -29,9 +38,11 @@ export const hexbinParams = new Map([
 export const relevantNumber = new Map([
   ['DE', 20],
   ['CH', 0],
+  ['AT', 0],
 ]);
 
 export const aspectRatio = new Map([
   ['DE', 'portrait'],
   ['CH', 'landscape'],
+  ['AT', 'landscape'],
 ]);

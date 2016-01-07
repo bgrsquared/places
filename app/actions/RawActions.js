@@ -4,6 +4,7 @@ import fetch from 'isomorphic-fetch';
 
 const rawDataDE = './data/placenames_de.json';
 const rawDataCH = './data/placenames_ch.json';
+const rawDataAT = './data/placenames_at.json';
 
 export function setRaw(raw, ctry) {
   return {
@@ -17,8 +18,10 @@ export function getRaw(ctry) {
   let dataURL;
   if (ctry === 'DE') {
     dataURL = rawDataDE;
-  } else {
+  } else if (ctry === 'CH') {
     dataURL = rawDataCH;
+  } else if (ctry === 'AT') {
+    dataURL = rawDataAT;
   }
   return dispatch => {
     return fetch(dataURL)
