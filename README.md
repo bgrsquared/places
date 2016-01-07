@@ -3,6 +3,9 @@
 ## LIVE APP!
 [LIVE APP](http://bgrsquared.com/placeNames/)
 
+## NEWS
+Austria added!
+
 ## Motivation & Thanks
 
 Based on [Moritz Stefaner's](https://twitter.com/moritz_stefaner) 
