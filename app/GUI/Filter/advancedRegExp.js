@@ -53,7 +53,7 @@ export default class AdvancedRegExp extends Component {
     const exs = [
       {
         name: 'Ends in "-ach", but not "-bach"',
-        regExp: '.*[^b]ach$',
+        regExp: '[^b]ach$',
       },
       {
         name: 'Contains one or more Umlaute (äöü)',
