@@ -47,14 +47,22 @@ export default function coreReducer(state = initialState, action) {
         };
       });
 
+      let fiTo;
+      if (state.advancedMode) {
+        fiTo = filteredDataRegExp(towns, state.regExp);
+      } else {
+        const ret = filteredData(towns, state.filterObject, state.filterLink);
+        fiTo = ret.fT;
+      }
+
       return Object.assign({}, state, {
         allTowns: towns,
-        filteredTowns: towns,
+        filteredTowns: fiTo,
         filterObject: initialState.filterObject,
-        hexbin: buildHexbins(towns, towns, action.ctry, state.radiusMultiplier),
+        hexbin: buildHexbins(towns, fiTo, action.ctry, state.radiusMultiplier),
         activeNode: initialState.activeNode,
         appReady: true,
-        regExp: initialState.regExp,
+        regExp: state.regExp,
         country: action.ctry,
         cacheData: Object.assign({}, state.cacheData, { [action.ctry]: action.raw }),
       });
