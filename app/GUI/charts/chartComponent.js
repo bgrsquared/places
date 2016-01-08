@@ -7,7 +7,7 @@ import { hexbinParams } from '../../config/globals';
 export default class ChartComponent extends Component {
   render() {
     const { app, setObject } = this.props;
-    const { hexbin, country } = app;
+    const { hexbin, country, radiusMultiplier } = app;
     const { tiles, maxPercent } = hexbin;
     const dots = [];
     const hbP = hexbinParams.get(country);
@@ -28,7 +28,7 @@ export default class ChartComponent extends Component {
                   className={'fillTransition'}
                   cx={t.x}
                   cy={t.y}
-                  r={radius * 5 / 6}
+                  r={radius * 5 / 6 * radiusMultiplier}
                   style={{ 'fill': col }}
                   onMouseOver={() => { setObject({ activeNode: t }); }}
                   onClick={() => { setObject({ activeNode: t }); }}

@@ -1,6 +1,6 @@
 /* global ga */
 import React, { Component, PropTypes } from 'react';
-import { Grid, Col, Modal, Button } from 'react-bootstrap';
+import { Grid, Col, Modal, Button, ButtonGroup } from 'react-bootstrap';
 
 import CountryChooserContainer from './countryChooser/countryChooserContainer';
 import ChartContainer from './charts/chartContainer';
@@ -24,6 +24,25 @@ export default class mainComponent extends Component {
     }
   }
 
+  setCircles(x) {
+    const { setObject, setFilter, setRegExp, app } = this.props;
+    const { filterObject, advancedMode, regExp } = app;
+    setObject({ radiusMultiplier: x });
+    if (advancedMode) {
+      setRegExp(regExp);
+    } else {
+      setFilter(filterObject);
+    }
+  }
+
+  showModal() {
+    this.setState({ showModal: true });
+  }
+
+  closeModal() {
+    this.setState({ showModal: false });
+  }
+
   changeMode(advancedMode) {
     const { setObject, setFilter } = this.props;
     setObject({
@@ -37,18 +56,10 @@ export default class mainComponent extends Component {
     });
   }
 
-  closeModal() {
-    this.setState({ showModal: false });
-  }
-
-  showModal() {
-    this.setState({ showModal: true });
-  }
-
   render() {
     const { app } = this.props;
     const { showModal } = this.state;
-    const { appReady, country, advancedMode } = app;
+    const { appReady, country, advancedMode, radiusMultiplier } = app;
     const ar = aspectRatio.get(country);
 
     const core = [];
@@ -95,20 +106,55 @@ export default class mainComponent extends Component {
           </Modal.Body>
         </Modal>
         <Grid fluid>
-          <Button
-            bsStyle={ advancedMode ? 'danger' : 'default' }
-            bsSize={'xsmall'}
-            style={{ float: 'right' }}
-            onClick={() => { this.changeMode(!advancedMode); }}
-          >Advanced Mode
-          </Button>
-          <Button
-            bsStyle={'default'}
-            bsSize={'xsmall'}
-            style={{ float: 'right' }}
-            onClick={() => { this.showModal(); }}
-          >Show Info
-          </Button>
+          <div style={{ float: 'right' }}>
+            <Button
+              bsStyle={'default'}
+              bsSize={'xsmall'}
+              onClick={() => { this.showModal(); }}
+            >Show Info
+            </Button>{' '}
+
+            <Button
+              bsStyle={ advancedMode ? 'danger' : 'default' }
+              bsSize={'xsmall'}
+              onClick={() => { this.changeMode(!advancedMode); }}
+            >Advanced Mode
+            </Button>{' '}
+
+            Circle Size:{' '}
+            <ButtonGroup>
+              <Button
+                bsSize={'xsmall'}
+                bsStyle={ radiusMultiplier === 1 / 2 ? 'primary' : 'default' }
+                onClick={() => { this.setCircles(1 / 2); }}
+              >
+                S
+              </Button>
+              <Button
+                bsSize={'xsmall'}
+                bsStyle={ radiusMultiplier === 1 ? 'primary' : 'default' }
+                onClick={() => { this.setCircles(1); }}
+              >
+                M
+              </Button>
+              <Button
+                bsSize={'xsmall'}
+                bsStyle={ radiusMultiplier === 2 ? 'primary' : 'default' }
+                onClick={() => { this.setCircles(2); }}
+              >
+                L
+              </Button>
+              <Button
+                bsSize={'xsmall'}
+                bsStyle={ radiusMultiplier === 5 ? 'primary' : 'default' }
+                onClick={() => { this.setCircles(5); }}
+              >
+                XL
+              </Button>
+            </ButtonGroup>
+          </div>
+          <br/>
+          <hr/>
           <CountryChooserContainer />
           {mainContent}
         </Grid>
@@ -121,4 +167,5 @@ mainComponent.propTypes = {
   getRaw: PropTypes.func.isRequired,
   setFilter: PropTypes.func.isRequired,
   setObject: PropTypes.func.isRequired,
+  setRegExp: PropTypes.func.isRequired,
 };

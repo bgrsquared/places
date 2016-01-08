@@ -14,7 +14,7 @@ export const projection = (ctry) => {
     .scale(scale);
 };
 
-const hexbin = (ctry) => {
+const hexbin = (ctry, multiplier) => {
   const params = hexbinParams.get(ctry);
   const { size, radius } = params;
 
@@ -22,12 +22,12 @@ const hexbin = (ctry) => {
     .x(d => d.x)
     .y(d => d.y)
     .size(size)
-    .radius(radius);
+    .radius(radius * multiplier);
 };
 
-export const buildHexbins = (all, filtered, ctry) => {
-  const hbFull = hexbin(ctry)(all);
-  const hbFiltered = hexbin(ctry)(filtered);
+export const buildHexbins = (all, filtered, ctry, multiplier) => {
+  const hbFull = hexbin(ctry, multiplier)(all);
+  const hbFiltered = hexbin(ctry, multiplier)(filtered);
 
   const hbFullTerse = {};
   const hbFilteredTerse = {};

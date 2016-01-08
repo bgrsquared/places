@@ -53,16 +53,19 @@ export default class LegendComponent extends Component {
     return (<div>
       <h4>Matches</h4>
       <p>{formattedNames.length ? formattedNames.join(', ') : 'No Matches'}</p>
-      <h4>Total</h4>
-      {filteredTowns.length} of {allTowns.length} loaded
-      ({(Math.round(10000 * filteredTowns.length / allTowns.length) / 100) + '%'})
-      <h4>Current Filter: Find town names...</h4>
-      {filterText}
+
       <h4>Current Node</h4>
       <p>{length +
       ' of ' + fullLength + ' towns match the filter (' +
       (fullLength ? (Math.round(10000 * length / fullLength) / 100) : 0) +
       '%)'}</p>
+
+      <h4>Current Filter: Find town names...</h4>
+      {filterText}
+
+      <h4>Total</h4>
+      {filteredTowns.length} of {allTowns.length} loaded
+      ({(Math.round(10000 * filteredTowns.length / allTowns.length) / 100) + '%'})
     </div>);
   }
 }

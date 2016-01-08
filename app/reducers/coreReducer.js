@@ -28,6 +28,7 @@ const initialState = {
   filterLink: 'AND',
   cacheData: {},
   advancedMode: false,
+  radiusMultiplier: 1,
 };
 
 export default function coreReducer(state = initialState, action) {
@@ -50,7 +51,7 @@ export default function coreReducer(state = initialState, action) {
         allTowns: towns,
         filteredTowns: towns,
         filterObject: initialState.filterObject,
-        hexbin: buildHexbins(towns, towns, action.ctry),
+        hexbin: buildHexbins(towns, towns, action.ctry, state.radiusMultiplier),
         activeNode: initialState.activeNode,
         appReady: true,
         regExp: initialState.regExp,
@@ -70,7 +71,7 @@ export default function coreReducer(state = initialState, action) {
             end: new Set(['custom']),
             any: new Set(['custom']),
           },
-          hexbin: buildHexbins(allTowns, filt, state.country),
+          hexbin: buildHexbins(allTowns, filt, state.country, state.radiusMultiplier),
           activeNode: initialState.activeNode,
           regExp: rE,
         });
@@ -87,7 +88,7 @@ export default function coreReducer(state = initialState, action) {
         {
           filteredTowns: fT,
           filterObject: obj,
-          hexbin: buildHexbins(allTowns, fT, state.country),
+          hexbin: buildHexbins(allTowns, fT, state.country, state.radiusMultiplier),
           activeNode: initialState.activeNode,
           regExp,
         });

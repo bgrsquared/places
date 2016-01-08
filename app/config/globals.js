@@ -1,8 +1,8 @@
 export const projectionParams = new Map([
   ['DE', {
-    center: [13.4, 52.5],
+    center: [14, 52.5],
     translate: [160, 120],
-    scale: 1200,
+    scale: 1000,
   }],
   ['CH', {
     center: [5.75, 48],
