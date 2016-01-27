@@ -62,3 +62,6 @@ dist/**/*
 # Other
 # --------------------
 coverage/
+dataModule/*
+!dataModule/overpassScripts
+!dataModule/script
