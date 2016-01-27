@@ -10,7 +10,6 @@ import { filteredData, filteredDataRegExp } from './helpers/filterFunction';
 
 const initialState = {
   country: false,
-  countryFull: false,
   source: 'OSM2',
   // options:
   // OSM0 / OSM1 / OSM2 (OpenStreetMap, where 0: all, 1: inhab, 2: inhab & filtered)
@@ -69,9 +68,8 @@ export default function coreReducer(state = initialState, action) {
         appReady: true,
         regExp: state.regExp,
         country: action.ctry,
-        countryFull: action.ctry,
         source: action.src,
-        cacheData: Object.assign({}, state.cacheData, { [action.ctry]: action.raw }),
+        cacheData: Object.assign({}, state.cacheData, { [action.ctry + action.src]: action.raw }),
       });
     case SET_REGEXP:
       const rE = action.regExp;

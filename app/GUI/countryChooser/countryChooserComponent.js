@@ -5,8 +5,9 @@ import { projectionParams } from '../../config/globals';
 
 export default class CountryChooserComponent extends Component {
   chooseSource(ctry, src) {
-    const { getRaw, setRaw, app } = this.props;
+    const { getRaw, setRaw, app, setObject } = this.props;
     const { cacheData } = app;
+    setObject({ country: false });
     if (cacheData[ctry + src]) {
       setRaw(cacheData[ctry + src], ctry, src);
     } else {
@@ -16,7 +17,7 @@ export default class CountryChooserComponent extends Component {
 
   render() {
     const { app } = this.props;
-    const { countryFull, source } = app;
+    const { country, source } = app;
 
     const sources = [
       {
@@ -39,8 +40,8 @@ export default class CountryChooserComponent extends Component {
       srcbtns.push(<Button
         bsStyle={style}
         key={s.key}
-        disabled={!countryFull}
-        onClick={() => this.chooseSource(countryFull, s.key)}
+        disabled={!country}
+        onClick={() => this.chooseSource(country, s.key)}
       >
         {s.name}
       </Button>);
@@ -49,7 +50,7 @@ export default class CountryChooserComponent extends Component {
     const countries = Array.from(projectionParams.keys());
     const btns = [];
     countries.map(c => {
-      const style = (c === countryFull ? 'primary' : 'default');
+      const style = (c === country ? 'primary' : 'default');
       btns.push(<Button
         bsStyle={style}
         key={c}
@@ -87,4 +88,5 @@ CountryChooserComponent.propTypes = {
   app: PropTypes.object,
   getRaw: PropTypes.func.isRequired,
   setRaw: PropTypes.func.isRequired,
+  setObject: PropTypes.func.isRequired,
 };

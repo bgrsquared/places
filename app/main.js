@@ -3,6 +3,7 @@
 // BASICS
 require('react-bootstrap');
 require('../node_modules/bootstrap/dist/css/bootstrap.min.css');
+require('../node_modules/font-awesome/css/font-awesome.min.css');
 
 // CORE
 import React, { Component } from 'react';

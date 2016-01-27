@@ -22,6 +22,10 @@ export default class mainComponent extends Component {
     if (document.location.hostname !== 'localhost') {
       ga('send', 'pageview', '/placeNames');
     }
+
+    // Load initial country
+    const { getRaw, app } = this.props;
+    getRaw('CH', app.source);
   }
 
   setCircles(x) {
@@ -91,6 +95,15 @@ export default class mainComponent extends Component {
           <hr/>
           <ExamplesSuffixContainer />
         </div>);
+    } else {
+      mainContent.push(
+        <div key={'loading'}>
+          <i className={'fa fa-spinner fa-pulse'}></i> Loading & Preparing Data...
+          <br/>
+          <br/>
+          <small>This can take a while... some files are pretty large... </small>
+        </div>
+      );
     }
 
     return (

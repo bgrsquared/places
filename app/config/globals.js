@@ -56,7 +56,7 @@ export const relevantNumber = new Map([
 
 export const aspectRatio = new Map([
   ['DE', 'portrait'],
-  ['DE', 'landscape'],
+  ['US', 'landscape'],
   ['CH', 'landscape'],
   ['AT', 'landscape'],
 ]);
