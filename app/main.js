@@ -28,6 +28,7 @@ import App from './GUI/mainContainer';
 const routes = (
   <Route path="/" component={App}>
     <Route path="placeNames" component={App}/>
+    <Route path="placeNamesExp" component={App}/>
   </Route>
 );
 
@@ -79,6 +80,7 @@ class Root extends Component {
     return (
       <div>
         {debugButton}
+        <h1>Experimental Branch! Please go to bgrsquared.com/placeNames for stable</h1>
         <Provider store={store}>
           <ReduxRouter />
         </Provider>

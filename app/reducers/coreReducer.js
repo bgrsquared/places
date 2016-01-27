@@ -10,6 +10,12 @@ import { filteredData, filteredDataRegExp } from './helpers/filterFunction';
 
 const initialState = {
   country: false,
+  countryFull: false,
+  source: 'OSM2',
+  // options:
+  // GN (geonames),
+  // OSM0 / OSM1 / OSM2 (OpenStreetMap, where 0: all, 1: inhab, 2: inhab & filtered)
+  // so OSM0 >= OSM1 >= OSM2
   appReady: false,
   allTowns: [],
   filteredTowns: [],
@@ -58,12 +64,14 @@ export default function coreReducer(state = initialState, action) {
       return Object.assign({}, state, {
         allTowns: towns,
         filteredTowns: fiTo,
-        filterObject: initialState.filterObject,
+        filterObject: state.filterObject,
         hexbin: buildHexbins(towns, fiTo, action.ctry, state.radiusMultiplier),
         activeNode: initialState.activeNode,
         appReady: true,
         regExp: state.regExp,
         country: action.ctry,
+        countryFull: action.ctry,
+        source: action.src,
         cacheData: Object.assign({}, state.cacheData, { [action.ctry]: action.raw }),
       });
     case SET_REGEXP:

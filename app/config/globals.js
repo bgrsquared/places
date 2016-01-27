@@ -1,13 +1,13 @@
 export const projectionParams = new Map([
-  ['DE', {
-    center: [14, 52.5],
-    translate: [160, 120],
-    scale: 1000,
-  }],
   ['CH', {
     center: [5.75, 48],
     translate: [0, 0],
     scale: 4500,
+  }],
+  ['DE', {
+    center: [14, 52.5],
+    translate: [160, 120],
+    scale: 1000,
   }],
   ['AT', {
     center: [9.25, 49.5],

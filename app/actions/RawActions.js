@@ -2,34 +2,44 @@ import * as types from '../constants/ActionTypes';
 
 import fetch from 'isomorphic-fetch';
 
-const rawDataDE = './data/placenames_de.json';
-const rawDataCH = './data/placenames_ch.json';
-const rawDataAT = './data/placenames_at.json';
-
-export function setRaw(raw, ctry) {
+export function setRaw(raw, ctry, src) {
   return {
     type: types.SET_RAW,
     raw,
     ctry,
+    src,
   };
 }
 
-export function getRaw(ctry) {
-  let dataURL;
-  if (ctry === 'DE') {
-    dataURL = rawDataDE;
-  } else if (ctry === 'CH') {
-    dataURL = rawDataCH;
-  } else if (ctry === 'AT') {
-    dataURL = rawDataAT;
+export function getRaw(ctry, src) {
+  let source;
+  switch (src) {
+    case 'GN':
+      source = 'GN';
+      break;
+    case 'OSM0':
+      source = 'All';
+      break;
+    case 'OSM1':
+      source = 'Inhab';
+      break;
+    case 'OSM2':
+      source = 'InhabFiltered';
+      break;
+    default:
+      source = 'All';
+      break;
   }
+
+  const dataURL = './data/' + ctry + '/data' + source + ctry + '.json';
+
   return dispatch => {
     return fetch(dataURL)
       .then(response => {
         return response.json();
       })
       .then(json => {
-        return dispatch(setRaw(json, ctry));
+        return dispatch(setRaw(json, ctry.slice(0, 2), src));
       });
   };
 }

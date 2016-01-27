@@ -1,15 +1,26 @@
 #!/bin/bash          
 
-# SETUP
-CODE="CH"
-ID=3600051701
-mkdir ./${CODE}
+# SETUP (uncomment the country you want to run!)
+# CODE="CH"
+# ID=3600051701
+
+CODE="AT"
+ID=3600016239
+
+# CODE="DE"
+# ID=3600051477
+
+# CODE="US"
+# ID=3600148838
+
+
+mkdir -p ./${CODE}
 
 # Inhabited and Filtered
-curl --data "$(sed s/LOCATION/3600051701/g ./overpassScripts/scriptInhabitedFiltered)" "http://overpass-api.de/api/interpreter" | awk -F# 'BEGIN {print "["} {print "[\""$1"\","$2","$3"],"} END { print "]"}' > ./${CODE}/dataInhabFiltered${CODE}.json
+curl --data "$(sed s/LOCATION/${ID}/g ./overpassScripts/scriptInhabitedFiltered)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataInhabFiltered${CODE}.json
 
 # Inhabited (unfiltered)
-curl --data "$(sed s/LOCATION/3600051701/g ./overpassScripts/scriptInhabited)" "http://overpass-api.de/api/interpreter" | awk -F# 'BEGIN {print "["} {print "[\""$1"\","$2","$3"],"} END { print "]"}' > ./${CODE}/dataInhab${CODE}.json
+curl --data "$(sed s/LOCATION/${ID}/g ./overpassScripts/scriptInhabited)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataInhab${CODE}.json
 
 # All places :)
-curl --data "$(sed s/LOCATION/3600051701/g ./overpassScripts/scriptAll)" "http://overpass-api.de/api/interpreter" | awk -F# 'BEGIN {print "["} {print "[\""$1"\","$2","$3"],"} END { print "]"}' > ./${CODE}/dataAll${CODE}.json
+curl --data "$(sed s/LOCATION/${ID}/g ./overpassScripts/scriptAll)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataAll${CODE}.json

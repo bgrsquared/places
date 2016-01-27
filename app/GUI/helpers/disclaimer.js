@@ -2,6 +2,39 @@ import React from 'react';
 
 export const Disclaimer = () => {
   return (<div>
+    <h5>Data/Licenses</h5>
+    Based on
+    <ul>
+      <li>
+        <a target={'_blank'} href={'http://www.geonames.org/export/'}>geonames</a> (under{' '}
+        <a
+          target={'_blank'} href={'http://creativecommons.org/licenses/by/3.0/'}
+        >Creative
+          Commons Attribution 3.0 License
+        </a>)
+        <ul>
+          <li>CH_geonames</li>
+          <li>AT</li>
+          <li>DE</li>
+        </ul>
+      </li>
+      <li>
+        <a href={'http://www.openstreetmap.org/copyright'}>Open Street Map</a> (under{' '}
+        <a
+          target={'_blank'}
+          href={'http://opendatacommons.org/licenses/odbl/'}
+        >Open Data Commons Open Database License (ODbL)
+        </a>)
+        <ul>
+          <li>CH_OSM_All</li>
+          <li>CH_OSM_Inhab</li>
+          <li>CH_OSM_Inhab_Filtered</li>
+        </ul>
+        <strong>Note on OSM:</strong>{' '}
+        <a target={'_blank'} href={'https://gist.github.com/chroth7/43ca48597a3a28ef3dbe'}>Find filters here</a>
+      </li>
+    </ul>
+    <hr/>
     <h5>Thanks</h5>
     <p>Idea, visualization, examples are based on{' '}
       <a
@@ -18,12 +51,12 @@ export const Disclaimer = () => {
         target={'_blank'}
         href={'https://github.com/MoritzStefaner/ach-ingen-zell'}
       >source here</a>)!</p>
-    Data based on <a target={'_blank'} href={'http://www.geonames.org/export/'}>geonames</a>.
+
     <hr/>
     <h5>Note</h5>
     <p>This is optimized for laptops/desktops,
-    i.e. sufficiently large displays and a "pointer"
-    device of sorts (fingers do not count here).</p>
+      i.e. sufficiently large displays and a "pointer"
+      device of sorts (fingers do not count here).</p>
     <p>Still, it runs on phones and tablets, but buttons may be small...</p>
     <h5>Source</h5>
     <p>Find the source for this
