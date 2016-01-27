@@ -6,19 +6,6 @@ export const Disclaimer = () => {
     Based on
     <ul>
       <li>
-        <a target={'_blank'} href={'http://www.geonames.org/export/'}>geonames</a> (under{' '}
-        <a
-          target={'_blank'} href={'http://creativecommons.org/licenses/by/3.0/'}
-        >Creative
-          Commons Attribution 3.0 License
-        </a>)
-        <ul>
-          <li>CH_geonames</li>
-          <li>AT</li>
-          <li>DE</li>
-        </ul>
-      </li>
-      <li>
         <a href={'http://www.openstreetmap.org/copyright'}>Open Street Map</a> (under{' '}
         <a
           target={'_blank'}
@@ -26,14 +13,16 @@ export const Disclaimer = () => {
         >Open Data Commons Open Database License (ODbL)
         </a>)
         <ul>
-          <li>CH_OSM_All</li>
-          <li>CH_OSM_Inhab</li>
-          <li>CH_OSM_Inhab_Filtered</li>
+          <li>All Places</li>
+          <li>"Inhabited Places"</li>
+          <li>"Filtered Inhabited Places"</li>
         </ul>
-        <strong>Note on OSM:</strong>{' '}
+        <strong>Find the filter-queries here:</strong>{' '}
         <a target={'_blank'} href={'https://gist.github.com/chroth7/43ca48597a3a28ef3dbe'}>Find filters here</a>
       </li>
     </ul>
+    Note that the original work by Moritz Stefaner is based on <strong>GeoNames</strong>.
+    We chose OpenStreetMap here.
     <hr/>
     <h5>Thanks</h5>
     <p>Idea, visualization, examples are based on{' '}

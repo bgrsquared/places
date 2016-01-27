@@ -13,7 +13,6 @@ const initialState = {
   countryFull: false,
   source: 'OSM2',
   // options:
-  // GN (geonames),
   // OSM0 / OSM1 / OSM2 (OpenStreetMap, where 0: all, 1: inhab, 2: inhab & filtered)
   // so OSM0 >= OSM1 >= OSM2
   appReady: false,

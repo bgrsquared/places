@@ -20,19 +20,15 @@ export default class CountryChooserComponent extends Component {
 
     const sources = [
       {
-        name: 'Geonames',
-        key: 'GN',
-      },
-      {
-        name: 'OSM All Places',
+        name: 'All Places',
         key: 'OSM0',
       },
       {
-        name: 'OSM Inhabited Places',
+        name: 'Inhabited Places',
         key: 'OSM1',
       },
       {
-        name: 'OSM Filtered Inhab. Places',
+        name: 'Filtered Inhab. Places',
         key: 'OSM2',
       },
     ];
@@ -43,6 +39,7 @@ export default class CountryChooserComponent extends Component {
       srcbtns.push(<Button
         bsStyle={style}
         key={s.key}
+        disabled={!countryFull}
         onClick={() => this.chooseSource(countryFull, s.key)}
       >
         {s.name}
@@ -64,15 +61,23 @@ export default class CountryChooserComponent extends Component {
 
     return (
       <div>
-        Please choose a Source:{' '}
+        Country:{' '}
+        <ButtonGroup>
+          {btns}
+        </ButtonGroup>
+        <br/>
+        <br/>
+        Source:{' '}
         <ButtonGroup>
           {srcbtns}
         </ButtonGroup>
         <br/>
-        Please choose a country:{' '}
-        <ButtonGroup>
-          {btns}
-        </ButtonGroup>
+        <p style={{ float: 'right' }}>
+          <small>Data
+            &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
+          </small>
+        </p>
+        <hr/>
       </div>
     );
   }
