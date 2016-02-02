@@ -21,15 +21,15 @@ export default class CountryChooserComponent extends Component {
 
     const sources = [
       {
-        name: 'Filtered Inhab. Places',
+        name: 'Filtered Inhab. Places (Smallest)',
         key: 'OSM2',
       },
       {
-        name: 'Inhabited Places',
+        name: 'Inhabited Places (Large)',
         key: 'OSM1',
       },
       {
-        name: 'All Places',
+        name: 'All Places (HUGE, especially for FR and ES)',
         key: 'OSM0',
       },
     ];
