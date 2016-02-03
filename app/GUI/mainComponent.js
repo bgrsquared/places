@@ -22,7 +22,7 @@ export default class mainComponent extends Component {
 
   componentDidMount() {
     if (document.location.hostname !== 'localhost') {
-      ga('send', 'pageview', '/placeNames');
+      ga('send', 'pageview', '/places');
     }
 
     // Load initial country

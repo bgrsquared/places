@@ -28,8 +28,7 @@ import App from './GUI/mainContainer';
 // Configure routes like normal
 const routes = (
   <Route path="/" component={App}>
-    <Route path="placeNames" component={App}/>
-    <Route path="placeNamesExp" component={App}/>
+    <Route path="places" component={App}/>
   </Route>
 );
 

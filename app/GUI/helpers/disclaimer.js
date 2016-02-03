@@ -4,7 +4,7 @@ export const Disclaimer = () => {
   return (<div>
     <small>Please note: Large amounts of data might be transferred!</small>
     <h5>Data/Licenses</h5>
-    Based on
+    Data based on
     <ul>
       <li>
         <a href={'http://www.openstreetmap.org/copyright'}>Open Street Map</a> (under{' '}
@@ -12,20 +12,21 @@ export const Disclaimer = () => {
           target={'_blank'}
           href={'http://opendatacommons.org/licenses/odbl/'}
         >Open Data Commons Open Database License (ODbL)
-        </a>)
+        </a>). We have 3 levels of depth:
         <ul>
           <li>All Places</li>
-          <li>"Inhabited Places"</li>
-          <li>"Filtered Inhabited Places"</li>
+          <li>Inhabited Places</li>
+          <li>Filtered Inhabited Places</li>
         </ul>
-        <strong>Find the filter-queries here:</strong>{' '}
-        <a target={'_blank'} href={'https://gist.github.com/chroth7/43ca48597a3a28ef3dbe'}>Find filters here</a>
+        <strong>Find the filter-queries</strong>{' '}
+        <a target={'_blank'} href={'https://gist.github.com/chroth7/43ca48597a3a28ef3dbe'}>
+          <strong>here</strong></a>.
       </li>
     </ul>
     Note that the original work by Moritz Stefaner is based on <strong>GeoNames</strong>.
     We chose OpenStreetMap here.
     <hr/>
-    <h5>Thanks</h5>
+    <h5>Inspiration & Thanks</h5>
     <p>Idea, visualization, examples are based on{' '}
       <a
         target={'_blank'}
@@ -49,14 +50,15 @@ export const Disclaimer = () => {
       device of sorts (fingers do not count here).</p>
     <p>Still, it runs on phones and tablets, but buttons may be small...</p>
     <hr/>
-    <h5>Source</h5>
+    <h5>Source etc.</h5>
     <p>Find the source for this
       project <a target={'_blank'} href={'https://github.com/bgrsquared/placeNames'}>here</a>.
-      Feedback (as always) much appreciated!</p>
+      Feedback (as always) much appreciated! (as are <strong>PRs</strong>, Forks, ...!)</p>
+    <p>Also, please contact me if you'd like new countries, or have better data, ...</p>
     <p><a
       target={'_blank'}
       href={'https://twitter.com/ilikepiecharts'}
-    >Follow me</a>{' '}
+    ><strong>Follow me</strong></a>{' '}
       for updates (performance, features, etc.)!</p>
     <p>&copy; 2016 <a
       href={'http://www.bgrsquared.com'}
