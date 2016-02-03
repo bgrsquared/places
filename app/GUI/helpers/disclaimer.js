@@ -47,6 +47,7 @@ export const Disclaimer = () => {
       i.e. sufficiently large displays and a "pointer"
       device of sorts (fingers do not count here).</p>
     <p>Still, it runs on phones and tablets, but buttons may be small...</p>
+    <hr/>
     <h5>Source</h5>
     <p>Find the source for this
       project <a target={'_blank'} href={'https://github.com/bgrsquared/placeNames'}>here</a>.

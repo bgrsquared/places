@@ -8,6 +8,7 @@ import LegendContainer from './legend/legendContainer';
 import FilterContainer from './filter/filterContainer';
 import ExamplesSuffixContainer from './examplesSuffix/examplesSuffixContainer';
 import { Disclaimer } from './helpers/disclaimer';
+import { Help } from './helpers/help';
 import { aspectRatio } from '../config/globals';
 
 export default class mainComponent extends Component {
@@ -15,6 +16,7 @@ export default class mainComponent extends Component {
     super();
     this.state = {
       showModal: true,
+      showHelp: false,
     };
   }
 
@@ -39,8 +41,11 @@ export default class mainComponent extends Component {
     }
   }
 
-  showModal() {
-    this.setState({ showModal: true });
+  showModal(showHelp = false) {
+    this.setState({
+      showModal: true,
+      showHelp,
+    });
   }
 
   closeModal() {
@@ -62,7 +67,7 @@ export default class mainComponent extends Component {
 
   render() {
     const { app } = this.props;
-    const { showModal } = this.state;
+    const { showModal, showHelp } = this.state;
     const { appReady, country, advancedMode, radiusMultiplier } = app;
     const ar = aspectRatio.get(country);
 
@@ -101,7 +106,7 @@ export default class mainComponent extends Component {
           <i className={'fa fa-spinner fa-pulse'}></i> Loading & Preparing Data...
           <br/>
           <br/>
-          <small>This can take a while... some files are pretty large... </small>
+          <small>This can take a while... some files are pretty large...</small>
         </div>
       );
     }
@@ -112,19 +117,28 @@ export default class mainComponent extends Component {
                show={showModal}
         >
           <Modal.Header closeButton>
-            <Modal.Title>Thanks & Source</Modal.Title>
+            <Modal.Title>
+              {showHelp ? 'Help' : 'Thanks & Source'}
+            </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <Disclaimer/>
+            {showHelp ? <Help/> : <Disclaimer/>}
           </Modal.Body>
         </Modal>
         <Grid fluid>
           <div style={{ float: 'right' }}>
             <Button
+              bsStyle={'danger'}
+              bsSize={'xsmall'}
+              onClick={() => { this.showModal(true); }}
+            ><i className={'fa fa-question'}></i>
+            </Button>{' '}
+
+            <Button
               bsStyle={'default'}
               bsSize={'xsmall'}
               onClick={() => { this.showModal(); }}
-            >Show Info
+            >Info
             </Button>{' '}
 
             <Button

@@ -23,20 +23,23 @@ export default class CountryChooserComponent extends Component {
       {
         name: 'Filtered Inhab. Places (Smallest)',
         key: 'OSM2',
+        style: 'primary',
       },
       {
         name: 'Inhabited Places (Large)',
         key: 'OSM1',
+        style: 'warning',
       },
       {
         name: 'All Places (HUGE, especially for FR and ES)',
         key: 'OSM0',
+        style: 'danger',
       },
     ];
 
     const srcbtns = [];
     sources.map(s => {
-      const style = (s.key === source ? 'primary' : 'default');
+      const style = (s.key === source ? s.style : 'default');
       srcbtns.push(<Button
         bsStyle={style}
         key={s.key}
