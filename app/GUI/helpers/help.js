@@ -2,27 +2,27 @@ import React from 'react';
 
 export const Help = () => {
   return (<div>
-    <h3>Idea</h3>
-    <p>This application allows you to analyze the relative density of patterns in place names
-      per country.</p>
+    <h3 style={{ marginTop: '0px' }}>Idea</h3>
+    <div>This application allows you to analyze the relative density of patterns in place names
+      per country.</div>
     <h3>How does it work?</h3>
-    <p>Generally speaking, you have two modes:
+    <div>Generally speaking, you have two modes:
       <ul>
         <li>Standard Mode</li>
         <li>Advanced Mode</li>
       </ul>
       Based on the mode you can add/restrict the pattern of the names to be highlighted.
-    </p>
+    </div>
     <h4>Standard Mode</h4>
-    <p>In this mode, you can add patterns (letters or strings) that are
+    <div>In this mode, you can add patterns (letters or strings) that are
       <ul>
         <li>... at the beginning of the name</li>
         <li>... at the end of the name</li>
         <li>... contained in the name</li>
       </ul>
-    </p>
+    </div>
     <h5>Example for Standard Mode</h5>
-    <p>We want to see the density of all places in the US starting with "New "
+    <div>We want to see the density of all places in the US starting with "New "
       (note that we added a whitespace). So we add "New " (without the quotes) in the
       "Starts with ..." section and hit enter. We get:
       <br/>
@@ -33,10 +33,10 @@ export const Help = () => {
       <img src={'./assets/ScreenNewUS.jpg'} alt={'newPatternUS'} width={'200'}/>
       <br/>
       To remove, simply click the pattern button and it will disappear.
-    </p>
+    </div>
 
     <h4>Advanced Mode</h4>
-    <p>In the advanced mode, you can enter your own regular expressions.
+    <div>In the advanced mode, you can enter your own regular expressions.
       Please see the respective examples in this section to get started.
       <br/>
       <strong>Wait, what is a regular expression?</strong>
@@ -53,7 +53,7 @@ export const Help = () => {
           - try the pattern!
         </li>
       </ul>
-    </p>
+    </div>
 
   </div>);
 };
