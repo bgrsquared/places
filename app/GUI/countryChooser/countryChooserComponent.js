@@ -4,6 +4,13 @@ import { Button, ButtonGroup } from 'react-bootstrap';
 import { projectionParams } from '../../config/globals';
 
 export default class CountryChooserComponent extends Component {
+  constructor() {
+    super();
+    this.state = {
+      showSources: false,
+    };
+  }
+
   chooseSource(ctry, src) {
     const { getRaw, setRaw, app, setObject } = this.props;
     const { cacheData } = app;
@@ -16,22 +23,26 @@ export default class CountryChooserComponent extends Component {
   }
 
   render() {
+    const { showSources } = this.state;
     const { app } = this.props;
     const { country, source } = app;
 
+    const sourceMap = new Map([
+      ['OSM2', 'Stage 1: Filtered Inhab. Places (Smallest)'],
+      ['OSM1', 'Stage 2: Inhabited Places (Large)'],
+      ['OSM0', 'Stage 3: All Places (HUGE)'],
+    ]);
+
     const sources = [
       {
-        name: 'Filtered Inhab. Places (Smallest)',
         key: 'OSM2',
         style: 'primary',
       },
       {
-        name: 'Inhabited Places (Large)',
         key: 'OSM1',
         style: 'warning',
       },
       {
-        name: 'All Places (HUGE, especially for FR and ES)',
         key: 'OSM0',
         style: 'danger',
       },
@@ -46,7 +57,7 @@ export default class CountryChooserComponent extends Component {
         disabled={!country}
         onClick={() => this.chooseSource(country, s.key)}
       >
-        {s.name}
+        {sourceMap.get(s.key)}
       </Button>);
     });
 
@@ -63,6 +74,27 @@ export default class CountryChooserComponent extends Component {
       </Button>);
     });
 
+    const changeSourceButton = [];
+    if (showSources) {
+      changeSourceButton.push(<Button
+        key={'csb1'}
+        bsSize={'xsmall'}
+        bsStyle={'danger'}
+        onClick={ () => this.setState({ showSources: !showSources })}
+      >
+        Change Source
+      </Button>);
+    } else {
+      changeSourceButton.push(<Button
+        key={'csb2'}
+        bsSize={'xsmall'}
+        bsStyle={'default'}
+        onClick={ () => this.setState({ showSources: !showSources })}
+      >
+        <i className={'fa fa-lock'}/> Change Source
+      </Button>);
+    }
+
     return (
       <div>
         Country:{' '}
@@ -71,10 +103,21 @@ export default class CountryChooserComponent extends Component {
         </ButtonGroup>
         <br/>
         <br/>
-        Source:{' '}
-        <ButtonGroup>
+        Current Source:{' '}<strong>{sourceMap.get(source)}</strong>{' '}
+        {changeSourceButton}
+        <br/>
+        {showSources ?
+          <p>
+            Note: Stage 2 and 3 can be very large files (especially for France and Spain!)
+            <br/>
+            Find the queries here:{' '}
+            <a target={'_blank'}
+               href={'https://gist.github.com/chroth7/43ca48597a3a28ef3dbe'}
+            >Queries</a>
+          </p> : ''}
+        {showSources ? <ButtonGroup>
           {srcbtns}
-        </ButtonGroup>
+        </ButtonGroup> : ''}
         <br/>
         <p style={{ float: 'right' }}>
           <small>Data

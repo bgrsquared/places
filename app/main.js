@@ -82,7 +82,6 @@ class Root extends Component {
       <div>
         {debugButton}
         <h1>Places!</h1>
-        <small>Please note: Large amounts of data might be transferred!</small>
         <Provider store={store}>
           <ReduxRouter />
         </Provider>

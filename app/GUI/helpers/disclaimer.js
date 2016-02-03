@@ -2,6 +2,7 @@ import React from 'react';
 
 export const Disclaimer = () => {
   return (<div>
+    <small>Please note: Large amounts of data might be transferred!</small>
     <h5>Data/Licenses</h5>
     Based on
     <ul>
