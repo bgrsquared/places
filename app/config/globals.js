@@ -18,7 +18,7 @@ export const projectionParams = new Map([
     scale: 2750,
   }],
   ['GB', {
-    center: [-9.5, 61.5],
+    center: [-9.5, 61],
     translate: [0, 0],
     scale: 1100,
   }],

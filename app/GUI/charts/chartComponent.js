@@ -19,10 +19,25 @@ export default class ChartComponent extends Component {
       colorScale.domain([-1, 0]);
     }
 
+    const offBoundsDot = {
+      names: [],
+      length: 0,
+      fullLength: 0,
+    };
+
     for (const tile in tiles) {
       if (tiles[tile].x) {
         const t = tiles[tile];
         const col = colorScale(t.percentage);
+
+        // off bounds
+        if (t.x > size[0] || t.x < 0 || t.y > size[1] || t.y < 0) {
+          offBoundsDot.length += t.length;
+          offBoundsDot.fullLength += t.fullLength;
+          offBoundsDot.names = offBoundsDot.names.concat(t.names);
+        }
+
+        // in bounds
         dots.push(
           <circle key={t.x + ' ' + t.y}
                   className={'fillTransition'}
@@ -35,6 +50,29 @@ export default class ChartComponent extends Component {
           />);
       }
     }
+
+    if (offBoundsDot.fullLength) {
+      dots.push(
+        <circle key={'OffBounds'}
+                className={'fillTransition'}
+                cx={size[0] - 4 * radius * 5 / 6 * radiusMultiplier}
+                cy={size[1] - 4 * radius * 5 / 6 * radiusMultiplier}
+                r={4 * radius * 5 / 6 * radiusMultiplier}
+                style={{ 'fill': colorScale(offBoundsDot.length / offBoundsDot.fullLength) }}
+                onMouseOver={() => { setObject({ activeNode: offBoundsDot }); }}
+                onClick={() => { setObject({ activeNode: offBoundsDot }); }}
+        />);
+      dots.push(
+        <text
+          key={'obtext'}
+          textAnchor={'end'}
+          fontSize={'10px'}
+          x={size[0] - 9 * radius * 5 / 6 * radiusMultiplier}
+          y={size[1] - 2 * radius * 5 / 6 * radiusMultiplier}
+        >Places outside of map</text>
+      );
+    }
+
 
     return (<div>
       <svg
