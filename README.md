@@ -1,10 +1,10 @@
 # Place Names
 
 ## LIVE APP!
-[LIVE APP](http://bgrsquared.com/placeNames/)
+[LIVE APP (new link)](http://bgrsquared.com/places/)
 
 ## NEWS
-Austria added!
+Many new countries, new layout, new features. Check it out!
 
 ## Motivation & Thanks
 
@@ -15,12 +15,17 @@ an interactive example.
 
 Thank you for your ideas & input, Moritz!
 
-So we essentially added some buttons, input fields 
+So we essentially added some buttons, some countries, some features, 
 and [redux](https://github.com/rackt/redux) to the mix, and here we are.
+
+Also, we are using OpenStreeMap data; 
+(c) [OpenStreeMap](http://www.openstreetmap.org/copyright) contributors
+
+See package.json for the other tools we have been using.
 
 ## Features
 
-* Switzerland and Germany
+* Many Countries
 * Suffixes, Prefixes, and "Infixes" -- or in other words: 
 You can set the beginning(s), ending(s) and part(s) of a name that shall be found
 * You can link suffixes, prefixes and infixes by either AND or OR (within filter-groups, we 
