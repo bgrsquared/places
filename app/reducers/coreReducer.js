@@ -32,7 +32,7 @@ const initialState = {
   filterLink: 'AND',
   cacheData: {},
   advancedMode: false,
-  radiusMultiplier: 1,
+  radiusMultiplier: 2,
 };
 
 export default function coreReducer(state = initialState, action) {

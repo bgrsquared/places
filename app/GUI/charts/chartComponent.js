@@ -7,7 +7,7 @@ import { hexbinParams } from '../../config/globals';
 export default class ChartComponent extends Component {
   render() {
     const { app, setObject } = this.props;
-    const { hexbin, country, radiusMultiplier } = app;
+    const { hexbin, country, radiusMultiplier, activeNode } = app;
     const { tiles, maxPercent } = hexbin;
     const dots = [];
     const hbP = hexbinParams.get(country);
@@ -35,19 +35,22 @@ export default class ChartComponent extends Component {
           offBoundsDot.length += t.length;
           offBoundsDot.fullLength += t.fullLength;
           offBoundsDot.names = offBoundsDot.names.concat(t.names);
+        } else {
+          // in bounds
+          const act = (activeNode.id === t.id);
+          dots.push(
+            <circle key={t.x + ' ' + t.y}
+                    className={'fillTransition'}
+                    stroke={act ? 'orangered' : 'white'}
+                    strokeWidth={act ? 1 : 0}
+                    cx={t.x}
+                    cy={t.y}
+                    r={radius * 5 / 6 * radiusMultiplier}
+                    style={{ 'fill': col }}
+                    onMouseOver={() => { setObject({ activeNode: t }); }}
+                    onClick={() => { setObject({ activeNode: t }); }}
+            />);
         }
-
-        // in bounds
-        dots.push(
-          <circle key={t.x + ' ' + t.y}
-                  className={'fillTransition'}
-                  cx={t.x}
-                  cy={t.y}
-                  r={radius * 5 / 6 * radiusMultiplier}
-                  style={{ 'fill': col }}
-                  onMouseOver={() => { setObject({ activeNode: t }); }}
-                  onClick={() => { setObject({ activeNode: t }); }}
-          />);
       }
     }
 
