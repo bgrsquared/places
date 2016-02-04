@@ -1,4 +1,5 @@
-# Place Names
+# Places!
+Find geospatial patterns in place names.
 
 ## LIVE APP!
 [LIVE APP (new link)](http://bgrsquared.com/places/)
