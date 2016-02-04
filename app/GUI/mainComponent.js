@@ -120,7 +120,7 @@ export default class mainComponent extends Component {
           marginRight: '10px',
           padding: '5px',
           borderRadius: '10px',
-          border: '1px solid lightgray' }}
+          border: '1px solid #EEE' }}
         >
           <Button
             bsStyle={'default'}
