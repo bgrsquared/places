@@ -80,7 +80,7 @@ class Root extends Component {
     return (
       <div>
         {debugButton}
-        <h1>Places!</h1>
+        <h1 style={{ marginLeft: '10px' }}>Places!</h1>
         <Provider store={store}>
           <ReduxRouter />
         </Provider>
