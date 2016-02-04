@@ -70,8 +70,8 @@ export default class ChartComponent extends Component {
           key={'obtext'}
           textAnchor={'end'}
           fontSize={'10px'}
-          x={size[0] - 9 * radius * 5 / 6 * radiusMultiplier}
-          y={size[1] - 2 * radius * 5 / 6 * radiusMultiplier}
+          x={size[0] - 8 * radius * 5 / 6 * radiusMultiplier}
+          y={size[1] - 2}
         >Places outside of map</text>
       );
     }

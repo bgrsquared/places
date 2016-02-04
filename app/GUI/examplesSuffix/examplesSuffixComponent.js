@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 
-import { Button, ButtonToolbar } from 'react-bootstrap';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 import { suffixList } from './examplesSuffixArray';
 
@@ -29,6 +29,7 @@ export default class ExamplesSuffixContainer extends Component {
         <Button
           bsSize={'xsmall'}
           key={'ex' + i}
+          style={{ marginTop: '-1px', borderRadius: '0px' }}
           onClick={() => {
           setFilter(
             { start: new Set(), end: new Set(s), any: new Set() }
@@ -40,7 +41,7 @@ export default class ExamplesSuffixContainer extends Component {
 
     const content = [];
     if (show) {
-      content.push(<ButtonToolbar key={'btns'}>{sfxButtons}</ButtonToolbar>);
+      content.push(<ButtonGroup key={'btns'}>{sfxButtons}</ButtonGroup>);
     }
 
     return (<div>

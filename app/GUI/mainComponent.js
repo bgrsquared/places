@@ -53,12 +53,16 @@ export default class mainComponent extends Component {
     } else {
       core.push(<Grid fluid key={'coreFull'}>
         <Col xs={ar === 'portrait' ? 6 : 12}
+             sm={ar === 'portrait' ? 6 : 12}
              md={ar === 'portrait' ? 6 : 9}
+             lg={ar === 'portrait' ? 3 : 9}
         >
           <ChartContainer />
         </Col>
         <Col xs={ar === 'portrait' ? 6 : 12}
+             sm={ar === 'portrait' ? 6 : 12}
              md={ar === 'portrait' ? 6 : 3}
+             lg={ar === 'portrait' ? 9 : 3}
         >
           <LegendContainer />
         </Col>
@@ -111,6 +115,7 @@ export default class mainComponent extends Component {
           borderRadius: '10px',
           border: '1px solid #EEE' }}
         >
+          <div style={{ float: 'right' }}>
           <Button
             bsStyle={'default'}
             bsSize={'xsmall'}
@@ -124,7 +129,7 @@ export default class mainComponent extends Component {
             onClick={() => { this.showModal(true); }}
           ><i className={'fa fa-question'}></i>
           </Button>{' '}
-
+          </div>
           <br/>
           <br/>
           <div style={{ float: 'right' }}>

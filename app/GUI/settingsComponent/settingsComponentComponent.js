@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import { countryNamesMap, multiplierTextMap } from '../../config/globals';
 
@@ -108,7 +108,7 @@ export default class SettingsComponentComponent extends Component {
     }
 
     return (
-      <div>
+      <Grid fluid>
         <h3>Settings</h3>
         <DropdownButton
           id={'sb1'}
@@ -165,7 +165,7 @@ export default class SettingsComponentComponent extends Component {
             XL
           </MenuItem>
         </DropdownButton>
-      </div>
+      </Grid>
     );
   }
 }
