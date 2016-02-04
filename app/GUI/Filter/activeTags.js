@@ -19,6 +19,7 @@ export default class ActiveTags extends Component {
       buttons.push(
         <Button bsSize={'xsmall'}
                 key={'tag' + i}
+                style={{ marginTop: '-1px', borderRadius: '0px' }}
                 onClick={() => { this.removeTag(t); }}
         >
           &times; {t}
