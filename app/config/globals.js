@@ -181,3 +181,21 @@ export const aspectRatio = new Map([
   ['BR', 'landscape'],
   ['CN', 'landscape'],
 ]);
+
+export const countryNamesMap = new Map([
+  ['AT', 'Austria'],
+  ['BR', 'Brasil'],
+  ['CA', 'Canada'],
+  ['CN', 'China'],
+  ['FR', 'France'],
+  ['DE', 'Germany'],
+  ['GB', 'Great Britain'],
+  ['IN', 'India'],
+  ['IT', 'Italy'],
+  ['JP', 'Japan'],
+  ['PT', 'Portugal'],
+  ['RU', 'Russia'],
+  ['ES', 'Spain'],
+  ['CH', 'Switzerland'],
+  ['US', 'United States'],
+]);

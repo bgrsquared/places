@@ -93,7 +93,6 @@ export default class mainComponent extends Component {
     if (country) {
       mainContent.push(
         <div key={'mc'}>
-          <hr/>
           <FilterContainer />
           <hr/>
           {core}
@@ -125,66 +124,79 @@ export default class mainComponent extends Component {
             {showHelp ? <Help/> : <Disclaimer/>}
           </Modal.Body>
         </Modal>
-        <Grid fluid>
-          <div style={{ float: 'right' }}>
-            <Button
-              bsStyle={'danger'}
-              bsSize={'xsmall'}
-              onClick={() => { this.showModal(true); }}
-            ><i className={'fa fa-question'}></i>
-            </Button>{' '}
+        <div style={{ float: 'left' }}>
+          <h1 style={{ marginLeft: '10px', marginTop: '0px' }}>Places!</h1>
+          <span style={{ marginLeft: '10px' }}>Find geospatial patterns in place names.</span>
+        </div>
+        <div style={{ float: 'right', marginRight: '10px' }}>
+          <Button
+            bsStyle={'danger'}
+            bsSize={'xsmall'}
+            onClick={() => { this.showModal(true); }}
+          ><i className={'fa fa-question'}></i>
+          </Button>{' '}
 
-            <Button
-              bsStyle={'default'}
-              bsSize={'xsmall'}
-              onClick={() => { this.showModal(); }}
-            >Thanks & Source
-            </Button>{' '}
+          <Button
+            bsStyle={'default'}
+            bsSize={'xsmall'}
+            onClick={() => { this.showModal(); }}
+          >Thanks & Source
+          </Button>{' '}
 
-            <Button
-              bsStyle={ advancedMode ? 'danger' : 'default' }
-              bsSize={'xsmall'}
-              onClick={() => { this.changeMode(!advancedMode); }}
-            >Advanced Mode
-            </Button>{' '}
+          <Button
+            bsStyle={ advancedMode ? 'danger' : 'default' }
+            bsSize={'xsmall'}
+            onClick={() => { this.changeMode(!advancedMode); }}
+          >Advanced Mode
+          </Button>{' '}
 
-            Circle Size:{' '}
-            <ButtonGroup>
-              <Button
-                bsSize={'xsmall'}
-                bsStyle={ radiusMultiplier === 1 / 2 ? 'primary' : 'default' }
-                onClick={() => { this.setCircles(1 / 2); }}
-              >
-                S
-              </Button>
-              <Button
-                bsSize={'xsmall'}
-                bsStyle={ radiusMultiplier === 1 ? 'primary' : 'default' }
-                onClick={() => { this.setCircles(1); }}
-              >
-                M
-              </Button>
-              <Button
-                bsSize={'xsmall'}
-                bsStyle={ radiusMultiplier === 2 ? 'primary' : 'default' }
-                onClick={() => { this.setCircles(2); }}
-              >
-                L
-              </Button>
-              <Button
-                bsSize={'xsmall'}
-                bsStyle={ radiusMultiplier === 5 ? 'primary' : 'default' }
-                onClick={() => { this.setCircles(5); }}
-              >
-                XL
-              </Button>
-            </ButtonGroup>
-          </div>
+          Circle Size:{' '}
+          <ButtonGroup>
+            <Button
+              bsSize={'xsmall'}
+              bsStyle={ radiusMultiplier === 1 / 2 ? 'primary' : 'default' }
+              onClick={() => { this.setCircles(1 / 2); }}
+            >
+              S
+            </Button>
+            <Button
+              bsSize={'xsmall'}
+              bsStyle={ radiusMultiplier === 1 ? 'primary' : 'default' }
+              onClick={() => { this.setCircles(1); }}
+            >
+              M
+            </Button>
+            <Button
+              bsSize={'xsmall'}
+              bsStyle={ radiusMultiplier === 2 ? 'primary' : 'default' }
+              onClick={() => { this.setCircles(2); }}
+            >
+              L
+            </Button>
+            <Button
+              bsSize={'xsmall'}
+              bsStyle={ radiusMultiplier === 5 ? 'primary' : 'default' }
+              onClick={() => { this.setCircles(5); }}
+            >
+              XL
+            </Button>
+          </ButtonGroup>
           <br/>
+          <br/>
+          <p style={{ float: 'right' }}>
+            <small>Data
+              &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
+            </small>
+          </p>
           <hr/>
+        </div>
+
+        <div style={{ clear: 'both' }}>
+        <Grid fluid>
           <CountryChooserContainer />
           {mainContent}
         </Grid>
+        </div>
       </div>);
   }
 }

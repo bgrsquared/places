@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button, Grid, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { projectionParams } from '../../config/globals';
+import { countryNamesMap } from '../../config/globals';
 
 export default class CountryChooserComponent extends Component {
   constructor() {
@@ -28,9 +28,9 @@ export default class CountryChooserComponent extends Component {
     const { country, source } = app;
 
     const sourceMap = new Map([
-      ['OSM2', 'Stage 1: Filtered Inhab. Places (Smallest)'],
-      ['OSM1', 'Stage 2: Inhabited Places (Large)'],
-      ['OSM0', 'Stage 3: All Places (HUGE)'],
+      ['OSM2', 'Stage 1 - Filtered Inhabited Places (Smallest)'],
+      ['OSM1', 'Stage 2 - Inhabited Places (Large)'],
+      ['OSM0', 'Stage 3 - All Places (HUGE)'],
     ]);
 
     const sources = [
@@ -51,27 +51,32 @@ export default class CountryChooserComponent extends Component {
     const srcbtns = [];
     sources.map(s => {
       const style = (s.key === source ? s.style : 'default');
-      srcbtns.push(<Button
+      srcbtns.push(<MenuItem
         bsStyle={style}
         key={s.key}
-        disabled={!country}
+        disabled={s.key === source}
         onClick={() => this.chooseSource(country, s.key)}
       >
         {sourceMap.get(s.key)}
-      </Button>);
+      </MenuItem>);
     });
 
-    const countries = Array.from(projectionParams.keys());
+    srcbtns.splice(1, 0, <MenuItem divider key={'divider'}/>);
+    srcbtns.splice(2, 0,
+      <MenuItem header key={'warn'}>Note: Stage 2 & 3 can be large files</MenuItem>);
+
+    const countries = Array.from(countryNamesMap.keys());
     const btns = [];
     countries.map(c => {
       const style = (c === country ? 'primary' : 'default');
-      btns.push(<Button
+      btns.push(<MenuItem
         bsStyle={style}
         key={c}
+        disabled={country === c}
         onClick={() => this.chooseSource(c, source)}
       >
-        {c}
-      </Button>);
+        {countryNamesMap.get(c)}
+      </MenuItem>);
     });
 
     const changeSourceButton = [];
@@ -94,38 +99,24 @@ export default class CountryChooserComponent extends Component {
         Change Source
       </Button>);
     }
-
     return (
-      <div>
-        Country:{' '}
-        <ButtonGroup>
+      <Grid fluid>
+        <h3>Parameters</h3>
+        <DropdownButton
+          id={'sb1'}
+          bsStyle={'primary'}
+          title={country ? 'Country: ' + countryNamesMap.get(country) :
+          <span><i className={'fa fa-spinner fa-pulse'}></i> Loading...</span>}
+        >
           {btns}
-        </ButtonGroup>
-        <br/>
-        <br/>
-        Current Source:{' '}<strong>{sourceMap.get(source)}</strong>{' '}
-        {changeSourceButton}
-        <br/>
-        {showSources ?
-          <p>
-            Note: Stage 2 and 3 can be very large files (especially for France and Spain!)
-            <br/>
-            Find the queries here:{' '}
-            <a target={'_blank'}
-               href={'https://gist.github.com/chroth7/43ca48597a3a28ef3dbe'}
-            >Queries</a>
-          </p> : ''}
-        {showSources ? <ButtonGroup>
+        </DropdownButton>{' '}
+        <DropdownButton
+          id={'sb2'}
+          title={'Data: ' + sourceMap.get(source)}
+        >
           {srcbtns}
-        </ButtonGroup> : ''}
-        <br/>
-        <p style={{ float: 'right' }}>
-          <small>Data
-            &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
-          </small>
-        </p>
-        <hr/>
-      </div>
+        </DropdownButton>
+      </Grid>
     );
   }
 }
