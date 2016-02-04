@@ -52,23 +52,10 @@ export default class mainComponent extends Component {
     this.setState({ showModal: false });
   }
 
-  changeMode(advancedMode) {
-    const { setObject, setFilter } = this.props;
-    setObject({
-      advancedMode,
-      regExp: '.*',
-    });
-    setFilter({
-      start: new Set(),
-      end: new Set(),
-      any: new Set(),
-    });
-  }
-
   render() {
     const { app } = this.props;
     const { showModal, showHelp } = this.state;
-    const { appReady, country, advancedMode, radiusMultiplier } = app;
+    const { appReady, country, radiusMultiplier } = app;
     const ar = aspectRatio.get(country);
 
     const core = [];
@@ -147,13 +134,6 @@ export default class mainComponent extends Component {
             bsSize={'xsmall'}
             onClick={() => { this.showModal(true); }}
           ><i className={'fa fa-question'}></i>
-          </Button>{' '}
-
-          <Button
-            bsStyle={ advancedMode ? 'danger' : 'default' }
-            bsSize={'xsmall'}
-            onClick={() => { this.changeMode(!advancedMode); }}
-          >Advanced Mode
           </Button>{' '}
 
           Circle Size:{' '}

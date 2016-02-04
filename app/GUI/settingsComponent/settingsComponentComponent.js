@@ -1,16 +1,9 @@
 import React, { Component, PropTypes } from 'react';
-import { Button, Grid, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import { countryNamesMap } from '../../config/globals';
 
 export default class SettingsComponentComponent extends Component {
-  constructor() {
-    super();
-    this.state = {
-      showSources: false,
-    };
-  }
-
   chooseSource(ctry, src) {
     const { getRaw, setRaw, app, setObject } = this.props;
     const { cacheData } = app;
@@ -22,10 +15,22 @@ export default class SettingsComponentComponent extends Component {
     }
   }
 
+  changeMode(advancedMode) {
+    const { setObject, setFilter } = this.props;
+    setObject({
+      advancedMode,
+      regExp: '.*',
+    });
+    setFilter({
+      start: new Set(),
+      end: new Set(),
+      any: new Set(),
+    });
+  }
+
   render() {
-    const { showSources } = this.state;
     const { app } = this.props;
-    const { country, source } = app;
+    const { country, source, advancedMode } = app;
 
     const sourceMap = new Map([
       ['OSM2', 'Stage 1 - Filtered Inhabited Places (Smallest)'],
@@ -79,28 +84,20 @@ export default class SettingsComponentComponent extends Component {
       </MenuItem>);
     });
 
-    const changeSourceButton = [];
-    if (showSources) {
-      changeSourceButton.push(<Button
-        key={'csb1'}
-        bsSize={'xsmall'}
-        bsStyle={'danger'}
-        onClick={ () => this.setState({ showSources: !showSources })}
-      >
-        Change Source
-      </Button>);
-    } else {
-      changeSourceButton.push(<Button
-        key={'csb2'}
-        bsSize={'xsmall'}
-        bsStyle={'default'}
-        onClick={ () => this.setState({ showSources: !showSources })}
-      >
-        Change Source
-      </Button>);
+    let sourceStyle;
+    switch (source) {
+      case 'OSM2':
+        sourceStyle = 'default';
+        break;
+      case 'OSM1':
+        sourceStyle = 'warning';
+        break;
+      default:
+        sourceStyle = 'danger';
     }
+
     return (
-      <Grid fluid>
+      <div>
         <h3>Settings</h3>
         <DropdownButton
           id={'sb1'}
@@ -112,11 +109,19 @@ export default class SettingsComponentComponent extends Component {
         </DropdownButton>{' '}
         <DropdownButton
           id={'sb2'}
+          bsStyle={sourceStyle}
           title={'Data: ' + sourceMap.get(source)}
         >
           {srcbtns}
-        </DropdownButton>
-      </Grid>
+        </DropdownButton>{' '}
+        <Button
+          id={'sb3'}
+          bsStyle={advancedMode ? 'danger' : 'default'}
+          onClick={() => { this.changeMode(!advancedMode); }}
+        >
+          {'Mode: ' + (advancedMode ? 'Advanced' : 'Standard')}
+        </Button>
+      </div>
     );
   }
 }
@@ -124,6 +129,7 @@ export default class SettingsComponentComponent extends Component {
 SettingsComponentComponent.propTypes = {
   app: PropTypes.object,
   getRaw: PropTypes.func.isRequired,
-  setRaw: PropTypes.func.isRequired,
+  setFilter: PropTypes.func.isRequired,
   setObject: PropTypes.func.isRequired,
+  setRaw: PropTypes.func.isRequired,
 };
