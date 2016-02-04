@@ -14,29 +14,29 @@ export default class FilterComponent extends Component {
 
   render() {
     const { app, setFilter, setRegExp } = this.props;
-    const { filterObject, filterLink, regExp, advancedMode } = app;
+    const { filterObject, filterLink, regExp, advancedMode, allTowns, filteredTowns } = app;
     const { start, end, any } = filterObject;
 
     const content = [];
+
+    const filterText = [];
+    if (!filteredTowns.length) {
+      filterText.push(<span key={'nt'}>No places loaded, try relaxing the filter.</span>);
+    } else if (filteredTowns.length === allTowns.length) {
+      filterText.push(<span key={'at'}>All {allTowns.length} places loaded, no active filter.</span>);
+    } else {
+      filterText.push(<div key={'ft'}>
+        {filteredTowns.length} of {allTowns.length} places loaded
+        ({(Math.round(10000 * filteredTowns.length / allTowns.length) / 100) + '%'})
+      </div>);
+    }
 
     if (!advancedMode) {
       content.push(<Grid fluid key={'notAdvFilter'}>
         <Row>
           <Col xs={12}>
-            <h4>Link Filters <ButtonGroup>
-              <Button
-                bsSize={'xsmall'}
-                bsStyle={filterLink === 'AND' ? 'primary' : 'default'}
-                onClick={() => this.setFilterLinkInternal('AND')}
-              >AND
-              </Button>
-              <Button
-                bsSize={'xsmall'}
-                bsStyle={filterLink === 'OR' ? 'primary' : 'default'}
-                onClick={() => this.setFilterLinkInternal('OR')}
-              >OR
-              </Button>
-            </ButtonGroup></h4>
+            <h3>Filter</h3>
+            {filterText}
           </Col>
         </Row>
         <Row>
@@ -82,6 +82,25 @@ export default class FilterComponent extends Component {
               setFilter={setFilter}
             />
           </Col>
+          <Col xs={12}>
+            <h4>Link Filters
+              <br/>
+              <ButtonGroup>
+                <Button
+                  bsSize={'xsmall'}
+                  bsStyle={filterLink === 'AND' ? 'primary' : 'default'}
+                  onClick={() => this.setFilterLinkInternal('AND')}
+                >AND
+                </Button>
+                <Button
+                  bsSize={'xsmall'}
+                  bsStyle={filterLink === 'OR' ? 'primary' : 'default'}
+                  onClick={() => this.setFilterLinkInternal('OR')}
+                >OR
+                </Button>
+              </ButtonGroup></h4>
+          </Col>
+
         </Row>
       </Grid>);
     } else {

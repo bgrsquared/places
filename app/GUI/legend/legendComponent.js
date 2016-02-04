@@ -3,46 +3,9 @@ import React, { Component, PropTypes } from 'react';
 export default class LegendComponent extends Component {
   render() {
     const { app } = this.props;
-    const { activeNode, filterObject, filterLink,
-      allTowns, filteredTowns, regExp, advancedMode } =
+    const { activeNode, regExp } =
       app;
     const { names, length, fullLength } = activeNode;
-    const { start, end, any } = filterObject;
-
-    const filterText = [];
-    if (advancedMode) {
-      filterText.push(<p key={'custom'}>... based on a custom Regular Expression.</p>);
-    } else {
-      if (start.size) {
-        filterText.push(
-          <p key={'startFilter'}>...starting with:{' '}
-            <strong>{Array.from(start).join(', ')}</strong></p>);
-      }
-      if (end.size) {
-        if (start.size) {
-          filterText.push(
-            <span key={'fl1'}>{filterLink}</span>
-          );
-        }
-        filterText.push(
-          <p key={'endFilter'}>...ending in:{' '}
-            <strong>{Array.from(end).join(', ')}</strong></p>);
-      }
-      if (any.size) {
-        if (start.size + end.size) {
-          filterText.push(
-            <span key={'fl2'}>{filterLink}</span>
-          );
-        }
-        filterText.push(
-          <p key={'anyFilter'}>...containing:{' '}
-            <strong>{Array.from(any).join(', ')}</strong></p>);
-      }
-      if (!(any.size + end.size + start.size)) {
-        filterText.push(
-          <p key={'noFilter'}>No filter active</p>);
-      }
-    }
 
     const formattedNames = names.map(n => {
       return n.replace(regExp, s => {
@@ -50,22 +13,27 @@ export default class LegendComponent extends Component {
       });
     });
 
-    return (<div>
-      <h4>Matches</h4>
-      <p>{formattedNames.length ? formattedNames.join(', ') : 'No Matches'}</p>
+    const matchText = [];
 
-      <h4>Current Node</h4>
-      <p>{length +
-      ' of ' + fullLength + ' towns match the filter (' +
+    if (!length) {
+      //
+    } else if (length < fullLength) {
+      matchText.push(<small key={'some'}>
+        {length +
+      ' of ' + fullLength + ' places match the filter (' +
       (fullLength ? (Math.round(10000 * length / fullLength) / 100) : 0) +
-      '%)'}</p>
+      '%)'}
+      </small>);
+    } else {
+      matchText.push(<small key={'all'}>
+        All places in this node match the filter.
+      </small>);
+    }
 
-      <h4>Current Filter: Find town names...</h4>
-      {filterText}
-
-      <h4>Total</h4>
-      {filteredTowns.length} of {allTowns.length} loaded
-      ({(Math.round(10000 * filteredTowns.length / allTowns.length) / 100) + '%'})
+    return (<div>
+      <h4 style={{ marginBottom: '0px' }}>Matches</h4>
+      {matchText}
+      <p>{formattedNames.length ? formattedNames.join(', ') : 'No Matches'}</p>
     </div>);
   }
 }
