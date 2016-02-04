@@ -130,17 +130,17 @@ export default class mainComponent extends Component {
         </div>
         <div style={{ float: 'right', marginRight: '10px' }}>
           <Button
-            bsStyle={'danger'}
-            bsSize={'xsmall'}
-            onClick={() => { this.showModal(true); }}
-          ><i className={'fa fa-question'}></i>
-          </Button>{' '}
-
-          <Button
             bsStyle={'default'}
             bsSize={'xsmall'}
             onClick={() => { this.showModal(); }}
           >Thanks & Source
+          </Button>{' '}
+
+          <Button
+            bsStyle={'danger'}
+            bsSize={'xsmall'}
+            onClick={() => { this.showModal(true); }}
+          ><i className={'fa fa-question'}></i>
           </Button>{' '}
 
           <Button
@@ -192,10 +192,10 @@ export default class mainComponent extends Component {
         </div>
 
         <div style={{ clear: 'both' }}>
-        <Grid fluid>
-          <SettingsComponentContainer />
-          {mainContent}
-        </Grid>
+          <Grid fluid>
+            <SettingsComponentContainer />
+            {mainContent}
+          </Grid>
         </div>
       </div>);
   }

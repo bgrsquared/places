@@ -101,7 +101,7 @@ export default class SettingsComponentComponent extends Component {
     }
     return (
       <Grid fluid>
-        <h3>Parameters</h3>
+        <h3>Settings</h3>
         <DropdownButton
           id={'sb1'}
           bsStyle={'primary'}
