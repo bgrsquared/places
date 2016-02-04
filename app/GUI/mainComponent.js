@@ -2,7 +2,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Col, Modal, Button, ButtonGroup } from 'react-bootstrap';
 
-import CountryChooserContainer from './countryChooser/countryChooserContainer';
+import SettingsComponentContainer from './settingsComponent/settingsComponentContainer';
 import ChartContainer from './charts/chartContainer';
 import LegendContainer from './legend/legendContainer';
 import FilterContainer from './filter/filterContainer';
@@ -193,7 +193,7 @@ export default class mainComponent extends Component {
 
         <div style={{ clear: 'both' }}>
         <Grid fluid>
-          <CountryChooserContainer />
+          <SettingsComponentContainer />
           {mainContent}
         </Grid>
         </div>

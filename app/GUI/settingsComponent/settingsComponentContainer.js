@@ -3,7 +3,7 @@ import { pushState } from 'redux-router';
 import { bindActionCreators } from 'redux';
 import * as RawActions from '../../actions/RawActions';
 
-import CountryChooserComponent from './countryChooserComponent';
+import SettingsComponentComponent from './settingsComponentComponent';
 
 function mapStateToProps(state) {
   return {
@@ -18,4 +18,4 @@ function mapDispatchToProps(dispatch) {
 }
 
 export default connect(mapStateToProps,
-  mapDispatchToProps)(CountryChooserComponent);
+  mapDispatchToProps)(SettingsComponentComponent);

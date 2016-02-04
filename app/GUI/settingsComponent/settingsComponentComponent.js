@@ -3,7 +3,7 @@ import { Button, Grid, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import { countryNamesMap } from '../../config/globals';
 
-export default class CountryChooserComponent extends Component {
+export default class SettingsComponentComponent extends Component {
   constructor() {
     super();
     this.state = {
@@ -121,7 +121,7 @@ export default class CountryChooserComponent extends Component {
   }
 }
 
-CountryChooserComponent.propTypes = {
+SettingsComponentComponent.propTypes = {
   app: PropTypes.object,
   getRaw: PropTypes.func.isRequired,
   setRaw: PropTypes.func.isRequired,
