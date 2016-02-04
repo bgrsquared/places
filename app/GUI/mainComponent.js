@@ -128,7 +128,13 @@ export default class mainComponent extends Component {
           <h1 style={{ marginLeft: '10px', marginTop: '0px' }}>Places!</h1>
           <span style={{ marginLeft: '10px' }}>Find geospatial patterns in place names.</span>
         </div>
-        <div style={{ float: 'right', marginRight: '10px' }}>
+        <div style={{
+          float: 'right',
+          marginRight: '10px',
+          padding: '5px',
+          borderRadius: '10px',
+          border: '1px solid lightgray' }}
+        >
           <Button
             bsStyle={'default'}
             bsSize={'xsmall'}
@@ -183,17 +189,18 @@ export default class mainComponent extends Component {
           </ButtonGroup>
           <br/>
           <br/>
-          <p style={{ float: 'right' }}>
+          <div style={{ float: 'right' }}>
             <small>Data
               &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
             </small>
-          </p>
-          <hr/>
+          </div>
         </div>
 
         <div style={{ clear: 'both' }}>
+          <hr/>
           <Grid fluid>
             <SettingsComponentContainer />
+            <hr/>
             {mainContent}
           </Grid>
         </div>
