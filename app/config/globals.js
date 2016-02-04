@@ -182,6 +182,7 @@ export const aspectRatio = new Map([
   ['CN', 'landscape'],
 ]);
 
+// ORDER MATTERS HERE! (GUI will display in this order)
 export const countryNamesMap = new Map([
   ['AT', 'Austria'],
   ['BR', 'Brasil'],
@@ -198,4 +199,12 @@ export const countryNamesMap = new Map([
   ['ES', 'Spain'],
   ['CH', 'Switzerland'],
   ['US', 'United States'],
+]);
+
+
+export const multiplierTextMap = new Map([
+  [1 / 2, 'S'],
+  [1, 'M'],
+  [2, 'L'],
+  [5, 'XL'],
 ]);

@@ -1,6 +1,6 @@
 /* global ga */
 import React, { Component, PropTypes } from 'react';
-import { Grid, Col, Modal, Button, ButtonGroup } from 'react-bootstrap';
+import { Grid, Col, Modal, Button } from 'react-bootstrap';
 
 import SettingsComponentContainer from './settingsComponent/settingsComponentContainer';
 import ChartContainer from './charts/chartContainer';
@@ -30,17 +30,6 @@ export default class mainComponent extends Component {
     getRaw('CH', app.source);
   }
 
-  setCircles(x) {
-    const { setObject, setFilter, setRegExp, app } = this.props;
-    const { filterObject, advancedMode, regExp } = app;
-    setObject({ radiusMultiplier: x });
-    if (advancedMode) {
-      setRegExp(regExp);
-    } else {
-      setFilter(filterObject);
-    }
-  }
-
   showModal(showHelp = false) {
     this.setState({
       showModal: true,
@@ -55,7 +44,7 @@ export default class mainComponent extends Component {
   render() {
     const { app } = this.props;
     const { showModal, showHelp } = this.state;
-    const { appReady, country, radiusMultiplier } = app;
+    const { appReady, country } = app;
     const ar = aspectRatio.get(country);
 
     const core = [];
@@ -136,37 +125,6 @@ export default class mainComponent extends Component {
           ><i className={'fa fa-question'}></i>
           </Button>{' '}
 
-          Circle Size:{' '}
-          <ButtonGroup>
-            <Button
-              bsSize={'xsmall'}
-              bsStyle={ radiusMultiplier === 1 / 2 ? 'primary' : 'default' }
-              onClick={() => { this.setCircles(1 / 2); }}
-            >
-              S
-            </Button>
-            <Button
-              bsSize={'xsmall'}
-              bsStyle={ radiusMultiplier === 1 ? 'primary' : 'default' }
-              onClick={() => { this.setCircles(1); }}
-            >
-              M
-            </Button>
-            <Button
-              bsSize={'xsmall'}
-              bsStyle={ radiusMultiplier === 2 ? 'primary' : 'default' }
-              onClick={() => { this.setCircles(2); }}
-            >
-              L
-            </Button>
-            <Button
-              bsSize={'xsmall'}
-              bsStyle={ radiusMultiplier === 5 ? 'primary' : 'default' }
-              onClick={() => { this.setCircles(5); }}
-            >
-              XL
-            </Button>
-          </ButtonGroup>
           <br/>
           <br/>
           <div style={{ float: 'right' }}>

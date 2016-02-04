@@ -1,17 +1,17 @@
 import React, { Component, PropTypes } from 'react';
 import { Button, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { countryNamesMap } from '../../config/globals';
+import { countryNamesMap, multiplierTextMap } from '../../config/globals';
 
 export default class SettingsComponentComponent extends Component {
-  chooseSource(ctry, src) {
-    const { getRaw, setRaw, app, setObject } = this.props;
-    const { cacheData } = app;
-    setObject({ country: false });
-    if (cacheData[ctry + src]) {
-      setRaw(cacheData[ctry + src], ctry, src);
+  setCircles(x) {
+    const { setObject, setFilter, setRegExp, app } = this.props;
+    const { filterObject, advancedMode, regExp } = app;
+    setObject({ radiusMultiplier: x });
+    if (advancedMode) {
+      setRegExp(regExp);
     } else {
-      getRaw(ctry, src);
+      setFilter(filterObject);
     }
   }
 
@@ -28,9 +28,20 @@ export default class SettingsComponentComponent extends Component {
     });
   }
 
+  chooseSource(ctry, src) {
+    const { getRaw, setRaw, app, setObject } = this.props;
+    const { cacheData } = app;
+    setObject({ country: false });
+    if (cacheData[ctry + src]) {
+      setRaw(cacheData[ctry + src], ctry, src);
+    } else {
+      getRaw(ctry, src);
+    }
+  }
+
   render() {
     const { app } = this.props;
-    const { country, source, advancedMode } = app;
+    const { country, source, advancedMode, radiusMultiplier } = app;
 
     const sourceMap = new Map([
       ['OSM2', 'Stage 1 - Filtered Inhabited Places (Smallest)'],
@@ -120,7 +131,40 @@ export default class SettingsComponentComponent extends Component {
           onClick={() => { this.changeMode(!advancedMode); }}
         >
           {'Mode: ' + (advancedMode ? 'Advanced' : 'Standard')}
-        </Button>
+        </Button>{' '}
+        <DropdownButton
+          id={'sb4'}
+          title={'Circle Size: ' + multiplierTextMap.get(radiusMultiplier)}
+        >
+          <MenuItem
+            bsSize={'xsmall'}
+            disabled={ radiusMultiplier === 1 / 2 }
+            onClick={() => { this.setCircles(1 / 2); }}
+          >
+            S
+          </MenuItem>
+          <MenuItem
+            bsSize={'xsmall'}
+            disabled={ radiusMultiplier === 1 }
+            onClick={() => { this.setCircles(1); }}
+          >
+            M
+          </MenuItem>
+          <MenuItem
+            bsSize={'xsmall'}
+            disabled={ radiusMultiplier === 2 }
+            onClick={() => { this.setCircles(2); }}
+          >
+            L
+          </MenuItem>
+          <MenuItem
+            bsSize={'xsmall'}
+            disabled={ radiusMultiplier === 5 }
+            onClick={() => { this.setCircles(5); }}
+          >
+            XL
+          </MenuItem>
+        </DropdownButton>
       </div>
     );
   }
@@ -132,4 +176,5 @@ SettingsComponentComponent.propTypes = {
   setFilter: PropTypes.func.isRequired,
   setObject: PropTypes.func.isRequired,
   setRaw: PropTypes.func.isRequired,
+  setRegExp: PropTypes.func.isRequired,
 };
