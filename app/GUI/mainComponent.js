@@ -138,7 +138,7 @@ export default class mainComponent extends Component {
               bsStyle={'default'}
               bsSize={'xsmall'}
               onClick={() => { this.showModal(); }}
-            >Info
+            >Thanks & Source
             </Button>{' '}
 
             <Button

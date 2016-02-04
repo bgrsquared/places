@@ -26,7 +26,7 @@ export default class LegendComponent extends Component {
       </small>);
     } else {
       matchText.push(<small key={'all'}>
-        All places in this node match the filter.
+        All {length} places in this node match the filter.
       </small>);
     }
 

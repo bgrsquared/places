@@ -81,6 +81,7 @@ class Root extends Component {
       <div>
         {debugButton}
         <h1 style={{ marginLeft: '10px' }}>Places!</h1>
+        <span style={{ marginLeft: '10px' }}>Find geospatial patterns in place names.</span>
         <Provider store={store}>
           <ReduxRouter />
         </Provider>
