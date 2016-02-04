@@ -91,7 +91,7 @@ export default class CountryChooserComponent extends Component {
         bsStyle={'default'}
         onClick={ () => this.setState({ showSources: !showSources })}
       >
-        <i className={'fa fa-lock'}/> Change Source
+        Change Source
       </Button>);
     }
 
