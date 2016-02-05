@@ -42,6 +42,8 @@ export const Disclaimer = () => {
         target={'_blank'}
         href={'https://github.com/MoritzStefaner/ach-ingen-zell'}
       >source here</a>)!</p>
+    <p>Also, many thanks for the support and continuous feedback to{' '}
+      <a target={'_blank'} href="https://twitter.com/opendatazurich">OpenDataZurich</a>!</p>
 
     <hr/>
     <h5>Note</h5>
