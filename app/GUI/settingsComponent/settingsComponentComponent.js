@@ -169,6 +169,7 @@ export default class SettingsComponentComponent extends Component {
           <DropdownButton
             id={'sb4'}
             title={'Circle Size: ' + multiplierTextMap.get(radiusMultiplier)}
+            bsStyle={radiusMultiplier === 1 / 2 ? 'danger' : 'default'}
           >
             <MenuItem
               bsSize={'xsmall'}

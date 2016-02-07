@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Grid, Col, Row, ButtonGroup, Button } from 'react-bootstrap';
+import { Grid, Col, Row, ButtonGroup, Button, Well } from 'react-bootstrap';
 
 import ActiveTags from './activeTags';
 import NewTag from './newTag';
@@ -36,7 +36,21 @@ export default class FilterComponent extends Component {
         <Row>
           <Col xs={12}>
             <h3>Filter</h3>
-            {filterText}
+            Linked by:{' '}
+            <ButtonGroup>
+              <Button
+                bsSize={'xsmall'}
+                bsStyle={filterLink === 'AND' ? 'primary' : 'default'}
+                onClick={() => this.setFilterLinkInternal('AND')}
+              >AND
+              </Button>
+              <Button
+                bsSize={'xsmall'}
+                bsStyle={filterLink === 'OR' ? 'primary' : 'default'}
+                onClick={() => this.setFilterLinkInternal('OR')}
+              >OR
+              </Button>
+            </ButtonGroup>
           </Col>
         </Row>
         <Row>
@@ -82,25 +96,13 @@ export default class FilterComponent extends Component {
               setFilter={setFilter}
             />
           </Col>
+        </Row>
+        <Row>
           <Col xs={12}>
-            <h4>Link Filters
-              <br/>
-              <ButtonGroup>
-                <Button
-                  bsSize={'xsmall'}
-                  bsStyle={filterLink === 'AND' ? 'primary' : 'default'}
-                  onClick={() => this.setFilterLinkInternal('AND')}
-                >AND
-                </Button>
-                <Button
-                  bsSize={'xsmall'}
-                  bsStyle={filterLink === 'OR' ? 'primary' : 'default'}
-                  onClick={() => this.setFilterLinkInternal('OR')}
-                >OR
-                </Button>
-              </ButtonGroup></h4>
+            <Well>
+              {filterText}
+            </Well>
           </Col>
-
         </Row>
       </Grid>);
     } else {
