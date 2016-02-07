@@ -55,14 +55,14 @@ export default class mainComponent extends Component {
         <Col xs={ar === 'portrait' ? 6 : 12}
              sm={ar === 'portrait' ? 6 : 12}
              md={ar === 'portrait' ? 6 : 9}
-             lg={ar === 'portrait' ? 3 : 9}
+             lg={ar === 'portrait' ? 6 : 9}
         >
           <ChartContainer />
         </Col>
         <Col xs={ar === 'portrait' ? 6 : 12}
              sm={ar === 'portrait' ? 6 : 12}
              md={ar === 'portrait' ? 6 : 3}
-             lg={ar === 'portrait' ? 9 : 3}
+             lg={ar === 'portrait' ? 6 : 3}
         >
           <LegendContainer />
         </Col>

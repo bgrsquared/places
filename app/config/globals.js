@@ -206,5 +206,5 @@ export const multiplierTextMap = new Map([
   [1 / 2, 'S'],
   [1, 'M'],
   [2, 'L'],
-  [5, 'XL'],
+  [4, 'XL'],
 ]);
