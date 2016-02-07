@@ -186,7 +186,7 @@ export const aspectRatio = new Map([
 export const countryNamesMap = new Map([
   ['AT', 'Austria'],
   ['BR', 'Brasil'],
-  ['CA', 'Canada'],
+  // ['CA', 'Canada'],
   ['CN', 'China'],
   ['FR', 'France'],
   ['DE', 'Germany'],
@@ -195,7 +195,7 @@ export const countryNamesMap = new Map([
   ['IT', 'Italy'],
   ['JP', 'Japan'],
   ['PT', 'Portugal'],
-  ['RU', 'Russia'],
+  // ['RU', 'Russia'],
   ['ES', 'Spain'],
   ['CH', 'Switzerland'],
   ['US', 'United States'],
