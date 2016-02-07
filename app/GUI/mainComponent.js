@@ -44,29 +44,40 @@ export default class mainComponent extends Component {
   render() {
     const { app } = this.props;
     const { showModal, showHelp } = this.state;
-    const { appReady, country } = app;
+    const { appReady, country, layout } = app;
     const ar = aspectRatio.get(country);
 
     const core = [];
     if (!appReady) {
       core.push(<div key={'coreLoad'}>Loading...</div>);
     } else {
-      core.push(<Grid fluid key={'coreFull'}>
-        <Col xs={ar === 'portrait' ? 6 : 12}
-             sm={ar === 'portrait' ? 6 : 12}
-             md={ar === 'portrait' ? 6 : 9}
-             lg={ar === 'portrait' ? 6 : 9}
-        >
-          <ChartContainer />
-        </Col>
-        <Col xs={ar === 'portrait' ? 6 : 12}
-             sm={ar === 'portrait' ? 6 : 12}
-             md={ar === 'portrait' ? 6 : 3}
-             lg={ar === 'portrait' ? 6 : 3}
-        >
-          <LegendContainer />
-        </Col>
-      </Grid>);
+      if (layout[0] === 'auto') {
+        core.push(<Grid fluid key={'coreFull'}>
+          <Col xs={ar === 'portrait' ? 6 : 12}
+               sm={ar === 'portrait' ? 6 : 12}
+               md={ar === 'portrait' ? 6 : 9}
+               lg={ar === 'portrait' ? 6 : 9}
+          >
+            <ChartContainer />
+          </Col>
+          <Col xs={ar === 'portrait' ? 6 : 12}
+               sm={ar === 'portrait' ? 6 : 12}
+               md={ar === 'portrait' ? 6 : 3}
+               lg={ar === 'portrait' ? 6 : 3}
+          >
+            <LegendContainer />
+          </Col>
+        </Grid>);
+      } else {
+        core.push(<Grid fluid key={'coreFull'}>
+          <Col xs={layout[0]}>
+            <ChartContainer />
+          </Col>
+          <Col xs={layout[1]}>
+            <LegendContainer />
+          </Col>
+        </Grid>);
+      }
     }
 
     const mainContent = [];
@@ -116,19 +127,19 @@ export default class mainComponent extends Component {
           border: '1px solid #EEE' }}
         >
           <div style={{ float: 'right' }}>
-          <Button
-            bsStyle={'default'}
-            bsSize={'xsmall'}
-            onClick={() => { this.showModal(); }}
-          >Thanks & Source
-          </Button>{' '}
+            <Button
+              bsStyle={'default'}
+              bsSize={'xsmall'}
+              onClick={() => { this.showModal(); }}
+            >Thanks & Source
+            </Button>{' '}
 
-          <Button
-            bsStyle={'danger'}
-            bsSize={'xsmall'}
-            onClick={() => { this.showModal(true); }}
-          ><i className={'fa fa-question'}></i>
-          </Button>{' '}
+            <Button
+              bsStyle={'danger'}
+              bsSize={'xsmall'}
+              onClick={() => { this.showModal(true); }}
+            ><i className={'fa fa-question'}></i>
+            </Button>{' '}
           </div>
           <br/>
           <br/>

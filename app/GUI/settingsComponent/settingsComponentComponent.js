@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { countryNamesMap, multiplierTextMap } from '../../config/globals';
+import { countryNamesMap, multiplierTextMap, layoutTextMap, }
+  from '../../config/globals';
 
 export default class SettingsComponentComponent extends Component {
   setCircles(x) {
@@ -47,8 +48,8 @@ export default class SettingsComponentComponent extends Component {
   }
 
   render() {
-    const { app } = this.props;
-    const { country, source, advancedMode, radiusMultiplier, circleWeighted } = app;
+    const { app, setObject } = this.props;
+    const { country, source, advancedMode, radiusMultiplier, circleWeighted, layout } = app;
 
     const sourceMap = new Map([
       ['OSM2', 'Stage 1 - Filtered Inhabited Places (Smallest)'],
@@ -102,6 +103,27 @@ export default class SettingsComponentComponent extends Component {
       </MenuItem>);
     });
 
+    const layouts = [
+      ['auto'],
+      [3, 9],
+      [6, 6],
+      [9, 3],
+      [12, 12],
+    ];
+    const layoutBtns = [];
+    layouts.map(l => {
+      const lString = l.join(',');
+      const layoutString = layout.join(',');
+      layoutBtns.push(<MenuItem
+        key={lString}
+        disabled={lString === layoutString}
+        onClick={() => setObject({ layout: l })}
+      >
+        {layoutTextMap.get(l.join(','))}
+      </MenuItem>);
+    });
+
+
     let sourceStyle;
     switch (source) {
       case 'OSM2':
@@ -117,6 +139,7 @@ export default class SettingsComponentComponent extends Component {
     return (
       <Grid fluid>
         <h3>Settings</h3>
+        <h4>Data</h4>
         <ButtonToolbar>
           <DropdownButton
             id={'sb1'}
@@ -140,6 +163,9 @@ export default class SettingsComponentComponent extends Component {
           >
             {'Mode: ' + (advancedMode ? 'Advanced' : 'Standard')}
           </Button>
+        </ButtonToolbar>
+        <h4>Layout</h4>
+        <ButtonToolbar>
           <DropdownButton
             id={'sb4'}
             title={'Circle Size: ' + multiplierTextMap.get(radiusMultiplier)}
@@ -181,6 +207,13 @@ export default class SettingsComponentComponent extends Component {
             {'Circle Size: ' +
             (circleWeighted ? 'Weighted by Number of Places' : 'Equally large Circles')}
           </Button>
+          <DropdownButton
+            id={'sb7'}
+            title={'Layout: ' + layoutTextMap.get(layout.join(','))}
+            bsStyle={layout.join(',') !== 'auto' ? 'warning' : 'default'}
+          >
+            {layoutBtns}
+          </DropdownButton>
         </ButtonToolbar>
       </Grid>
     );

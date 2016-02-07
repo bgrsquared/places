@@ -34,6 +34,7 @@ const initialState = {
   advancedMode: false,
   radiusMultiplier: 2,
   circleWeighted: true,
+  layout: ['auto'],
 };
 
 export default function coreReducer(state = initialState, action) {

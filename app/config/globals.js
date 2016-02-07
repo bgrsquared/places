@@ -208,3 +208,11 @@ export const multiplierTextMap = new Map([
   [2, 'L'],
   [4, 'XL'],
 ]);
+
+export const layoutTextMap = new Map([
+  ['auto', 'Automatic'],
+  ['3,9', 'Small Graph'],
+  ['6,6', '50/50'],
+  ['9,3', 'Large Graph'],
+  ['12,12', 'Full Width Graph'],
+]);
