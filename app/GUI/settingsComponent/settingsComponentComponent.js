@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { Grid, Button, DropdownButton, MenuItem } from 'react-bootstrap';
+import { Grid, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
 import { countryNamesMap, multiplierTextMap } from '../../config/globals';
 
@@ -28,6 +28,13 @@ export default class SettingsComponentComponent extends Component {
     });
   }
 
+  changeWeight(circleWeighted) {
+    const { setObject } = this.props;
+    setObject({
+      circleWeighted,
+    });
+  }
+
   chooseSource(ctry, src) {
     const { getRaw, setRaw, app, setObject } = this.props;
     const { cacheData } = app;
@@ -41,7 +48,7 @@ export default class SettingsComponentComponent extends Component {
 
   render() {
     const { app } = this.props;
-    const { country, source, advancedMode, radiusMultiplier } = app;
+    const { country, source, advancedMode, radiusMultiplier, circleWeighted } = app;
 
     const sourceMap = new Map([
       ['OSM2', 'Stage 1 - Filtered Inhabited Places (Smallest)'],
@@ -110,61 +117,71 @@ export default class SettingsComponentComponent extends Component {
     return (
       <Grid fluid>
         <h3>Settings</h3>
-        <DropdownButton
-          id={'sb1'}
-          bsStyle={'primary'}
-          title={country ? 'Country: ' + countryNamesMap.get(country) :
+        <ButtonToolbar>
+          <DropdownButton
+            id={'sb1'}
+            bsStyle={'primary'}
+            title={country ? 'Country: ' + countryNamesMap.get(country) :
           <span><i className={'fa fa-spinner fa-pulse'}></i> Loading...</span>}
-        >
-          {btns}
-        </DropdownButton>{' '}
-        <DropdownButton
-          id={'sb2'}
-          bsStyle={sourceStyle}
-          title={'Data: ' + sourceMap.get(source)}
-        >
-          {srcbtns}
-        </DropdownButton>{' '}
-        <Button
-          id={'sb3'}
-          bsStyle={advancedMode ? 'danger' : 'default'}
-          onClick={() => { this.changeMode(!advancedMode); }}
-        >
-          {'Mode: ' + (advancedMode ? 'Advanced' : 'Standard')}
-        </Button>{' '}
-        <DropdownButton
-          id={'sb4'}
-          title={'Circle Size: ' + multiplierTextMap.get(radiusMultiplier)}
-        >
-          <MenuItem
-            bsSize={'xsmall'}
-            disabled={ radiusMultiplier === 1 / 2 }
-            onClick={() => { this.setCircles(1 / 2); }}
           >
-            S
-          </MenuItem>
-          <MenuItem
-            bsSize={'xsmall'}
-            disabled={ radiusMultiplier === 1 }
-            onClick={() => { this.setCircles(1); }}
+            {btns}
+          </DropdownButton>
+          <DropdownButton
+            id={'sb2'}
+            bsStyle={sourceStyle}
+            title={'Data: ' + sourceMap.get(source)}
           >
-            M
-          </MenuItem>
-          <MenuItem
-            bsSize={'xsmall'}
-            disabled={ radiusMultiplier === 2 }
-            onClick={() => { this.setCircles(2); }}
+            {srcbtns}
+          </DropdownButton>
+          <Button
+            id={'sb3'}
+            bsStyle={advancedMode ? 'danger' : 'default'}
+            onClick={() => { this.changeMode(!advancedMode); }}
           >
-            L
-          </MenuItem>
-          <MenuItem
-            bsSize={'xsmall'}
-            disabled={ radiusMultiplier === 5 }
-            onClick={() => { this.setCircles(5); }}
+            {'Mode: ' + (advancedMode ? 'Advanced' : 'Standard')}
+          </Button>
+          <DropdownButton
+            id={'sb4'}
+            title={'Circle Size: ' + multiplierTextMap.get(radiusMultiplier)}
           >
-            XL
-          </MenuItem>
-        </DropdownButton>
+            <MenuItem
+              bsSize={'xsmall'}
+              disabled={ radiusMultiplier === 1 / 2 }
+              onClick={() => { this.setCircles(1 / 2); }}
+            >
+              S (can be slow)
+            </MenuItem>
+            <MenuItem
+              bsSize={'xsmall'}
+              disabled={ radiusMultiplier === 1 }
+              onClick={() => { this.setCircles(1); }}
+            >
+              M
+            </MenuItem>
+            <MenuItem
+              bsSize={'xsmall'}
+              disabled={ radiusMultiplier === 2 }
+              onClick={() => { this.setCircles(2); }}
+            >
+              L
+            </MenuItem>
+            <MenuItem
+              bsSize={'xsmall'}
+              disabled={ radiusMultiplier === 4 }
+              onClick={() => { this.setCircles(4); }}
+            >
+              XL
+            </MenuItem>
+          </DropdownButton>
+          <Button
+            id={'sb6'}
+            bsStyle={circleWeighted ? 'primary' : 'default'}
+            onClick={() => { this.changeWeight(!circleWeighted); }}
+          >
+            {'Circle Size: ' +
+            (circleWeighted ? 'Weighted by Number of Places' : 'Equally large Circles')}
+          </Button>
+        </ButtonToolbar>
       </Grid>
     );
   }

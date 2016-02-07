@@ -32,6 +32,7 @@ export const buildHexbins = (all, filtered, ctry, multiplier) => {
   const hbFullTerse = {};
   const hbFilteredTerse = {};
   let maxPercent = 0;
+  let maxPlaces = 0;
   const fullLengthMap = new Map();
 
   hbFull.forEach(x => {
@@ -52,6 +53,7 @@ export const buildHexbins = (all, filtered, ctry, multiplier) => {
     if (fullLength > relevantNumber.get(ctry)) {
       maxPercent = Math.max(maxPercent, percentage);
     }
+    maxPlaces = Math.max(maxPlaces, fullLength);
     hbFilteredTerse[`${x.i}/${x.j}`] = ({
       id: `${x.i}/${x.j}`,
       names: x.map(town => town.name),
@@ -65,6 +67,7 @@ export const buildHexbins = (all, filtered, ctry, multiplier) => {
 
   return {
     maxPercent,
+    maxPlaces,
     tiles: Object.assign(
       {},
       hbFullTerse,

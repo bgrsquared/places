@@ -7,8 +7,8 @@ import { hexbinParams } from '../../config/globals';
 export default class ChartComponent extends Component {
   render() {
     const { app, setObject } = this.props;
-    const { hexbin, country, radiusMultiplier, activeNode } = app;
-    const { tiles, maxPercent } = hexbin;
+    const { hexbin, country, radiusMultiplier, activeNode, circleWeighted } = app;
+    const { tiles, maxPercent, maxPlaces } = hexbin;
     const dots = [];
     const hbP = hexbinParams.get(country);
     const { radius, size } = hbP;
@@ -18,6 +18,10 @@ export default class ChartComponent extends Component {
     } else {
       colorScale.domain([-1, 0]);
     }
+
+    const radScale = (circleWeighted ? d3scale.log()
+      .domain([1, maxPlaces])
+      .range([0.5, 2]) : () => 2);
 
     const offBoundsDot = {
       names: [],
@@ -45,7 +49,7 @@ export default class ChartComponent extends Component {
                     strokeWidth={act ? 1 : 0}
                     cx={t.x}
                     cy={t.y}
-                    r={radius * 5 / 6 * radiusMultiplier}
+                    r={radScale(t.fullLength) * radius * 5 / 12 * radiusMultiplier}
                     style={{ 'fill': col }}
                     onMouseOver={() => { setObject({ activeNode: t }); }}
                     onClick={() => { setObject({ activeNode: t }); }}

@@ -17,7 +17,7 @@ const initialState = {
   appReady: false,
   allTowns: [],
   filteredTowns: [],
-  hexbin: [],
+  hexbin: {},
   filterObject: {
     start: new Set(),
     end: new Set(),
@@ -33,6 +33,7 @@ const initialState = {
   cacheData: {},
   advancedMode: false,
   radiusMultiplier: 2,
+  circleWeighted: true,
 };
 
 export default function coreReducer(state = initialState, action) {

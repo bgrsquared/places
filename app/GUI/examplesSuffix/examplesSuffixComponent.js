@@ -31,7 +31,7 @@ export default class ExamplesSuffixContainer extends Component {
           key={'ex' + i}
           style={{ marginTop: '-1px', borderRadius: '0px' }}
           onClick={() => {
-          setFilter(
+            setFilter(
             { start: new Set(), end: new Set(s), any: new Set() }
           ); }}
         >
@@ -54,7 +54,8 @@ export default class ExamplesSuffixContainer extends Component {
         </Button>
       </h4>
       <small>These examples are part of Moritz Stefaner's example for Germany.
-      So, some do not really make sense for Switzerland (such as e.g. 'ow').</small>
+        So, some do not really make sense for Switzerland (such as e.g. 'ow').
+      </small>
       {content}
     </div>);
   }
