@@ -67,7 +67,7 @@ export const buildHexbins = (all, filtered, ctry, multiplier) => {
 
   return {
     maxPercent,
-    maxPlaces,
+    maxPlaces: Math.max.apply(null, Array.from(fullLengthMap.values())),
     tiles: Object.assign(
       {},
       hbFullTerse,
