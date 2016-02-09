@@ -142,6 +142,11 @@ export default class mainComponent extends Component {
             </Button>{' '}
           </div>
           <br/>
+          <div style={{ float: 'right' }}>
+            <a target={'_blank'} href="http://bgrsquared.com/">
+              <img width={150} src="./assets/Logo.png" alt="bgrsquared"/>
+            </a>
+          </div>
           <br/>
           <div style={{ float: 'right' }}>
             <small>Data
