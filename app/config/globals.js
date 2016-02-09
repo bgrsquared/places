@@ -1,78 +1,95 @@
 // HERE, you can set up the countries.
 // For now, you have to set some parameters for each country, see below.
 
+import d3geo from 'd3-geo';
+
 export const projectionParams = new Map([
   ['CH', {
+    projection: d3geo.geo.mercator(),
     center: [5.75, 48],
     translate: [0, 0],
     scale: 4500,
   }],
   ['DE', {
+    projection: d3geo.geo.mercator(),
     center: [11, 52.5],
     translate: [160, 120],
     scale: 1500,
   }],
   ['AT', {
+    projection: d3geo.geo.mercator(),
     center: [9.25, 49.5],
     translate: [0, 0],
     scale: 2750,
   }],
   ['GB', {
+    projection: d3geo.geo.mercator(),
     center: [-9.5, 61],
     translate: [0, 0],
     scale: 1100,
   }],
   ['FR', {
+    projection: d3geo.geo.mercator(),
     center: [-8, 51.35],
     translate: [0, 0],
     scale: 1100,
   }],
   ['IT', {
+    projection: d3geo.geo.mercator(),
     center: [6.5, 47.5],
     translate: [0, 0],
     scale: 1400,
   }],
   ['ES', {
+    projection: d3geo.geo.mercator(),
     center: [-12, 44.5],
     translate: [0, 0],
     scale: 1250,
   }],
   ['PT', {
+    projection: d3geo.geo.mercator(),
     center: [-10, 42.5],
     translate: [0, 0],
     scale: 2950,
   }],
   ['RU', {
+    projection: d3geo.geo.mercator(),
     center: [5, 82.5],
     translate: [0, 0],
     scale: 125,
   }],
   ['IN', {
+    projection: d3geo.geo.mercator(),
     center: [60, 37],
     translate: [0, 0],
     scale: 500,
   }],
   ['US', {
+    projection: d3geo.geo.mercator(),
     center: [-125, 55],
     translate: [0, 0],
     scale: 380,
   }],
   ['CA', {
-    center: [-175, 85],
+    projection: d3geo.geo.conicConformal().rotate([98, 0]),
+    center: [-100, 75],
     translate: [0, 0],
-    scale: 125,
+    scale: 350,
   }],
   ['BR', {
+    projection: d3geo.geo.mercator(),
     center: [-80, 7.5],
     translate: [0, 0],
     scale: 375,
   }],
   ['JP', {
+    projection: d3geo.geo.mercator(),
     center: [127.5, 46],
     translate: [0, 0],
     scale: 800,
   }],
   ['CN', {
+    projection: d3geo.geo.mercator(),
     center: [70, 55],
     translate: [0, 0],
     scale: 325,
@@ -186,7 +203,7 @@ export const aspectRatio = new Map([
 export const countryNamesMap = new Map([
   ['AT', 'Austria'],
   ['BR', 'Brasil'],
-  // ['CA', 'Canada'],
+  ['CA', 'Canada'],
   ['CN', 'China'],
   ['FR', 'France'],
   ['DE', 'Germany'],

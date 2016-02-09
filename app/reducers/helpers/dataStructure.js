@@ -1,14 +1,12 @@
-import d3geo from 'd3-geo';
 import d3hexbin from 'd3-hexbin';
 
 import { projectionParams, hexbinParams, relevantNumber } from '../../config/globals';
 
 export const projection = (ctry) => {
   const params = projectionParams.get(ctry);
-  const { center, translate, scale } = params;
+  const { center, translate, scale, projection: proj } = params;
 
-  return d3geo.geo
-    .mercator()
+  return proj
     .center(center)
     .translate(translate)
     .scale(scale);
