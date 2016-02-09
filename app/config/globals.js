@@ -53,10 +53,10 @@ export const projectionParams = new Map([
     scale: 2950,
   }],
   ['RU', {
-    projection: d3geo.geo.mercator(),
-    center: [5, 82.5],
+    projection: d3geo.geo.conicConformal().rotate([-90, 0]),
+    center: [-120, 70],
     translate: [0, 0],
-    scale: 125,
+    scale: 275,
   }],
   ['IN', {
     projection: d3geo.geo.mercator(),
@@ -212,7 +212,7 @@ export const countryNamesMap = new Map([
   ['IT', 'Italy'],
   ['JP', 'Japan'],
   ['PT', 'Portugal'],
-  // ['RU', 'Russia'],
+  ['RU', 'Russia'],
   ['ES', 'Spain'],
   ['CH', 'Switzerland'],
   ['US', 'United States'],
