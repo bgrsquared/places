@@ -29,7 +29,7 @@ export const buildHexbins = (all, filtered, ctry, multiplier) => {
 
   const hbFullTerse = {};
   const hbFilteredTerse = {};
-  let maxPercent = 0;
+  let maxPercent = 0.01;
   let maxPlaces = 0;
   const fullLengthMap = new Map();
 
