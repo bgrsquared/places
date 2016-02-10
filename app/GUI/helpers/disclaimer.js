@@ -7,7 +7,7 @@ export const Disclaimer = () => {
     Data based on
     <ul>
       <li>
-        <a href={'http://www.openstreetmap.org/copyright'}>Open Street Map</a> (under{' '}
+        <a href={'http://www.openstreetmap.org/copyright'}>OpenStreetMap</a> (under{' '}
         <a
           target={'_blank'}
           href={'http://opendatacommons.org/licenses/odbl/'}
