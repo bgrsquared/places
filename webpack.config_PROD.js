@@ -93,7 +93,10 @@ var config = {
     new webpack.DefinePlugin({
       __PRODUCTION__: true,
       __DEVELOPMENT__: false,
-      __DEVTOOLS__: false
+      __DEVTOOLS__: false,
+      'process.env': {
+        'NODE_ENV': '"production"'
+      }
     })
   ]
 };

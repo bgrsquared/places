@@ -253,7 +253,7 @@ export const countryNamesMap = new Map([
   ['AT', 'Austria'],
   ['AU', 'Australia'],
   ['BE', 'Belgium'],
-  ['BR', 'Brasil'],
+  ['BR', 'Brazil'],
   ['CA', 'Canada'],
   ['CN', 'China'],
   ['FR', 'France'],
