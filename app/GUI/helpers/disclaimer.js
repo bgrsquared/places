@@ -1,7 +1,23 @@
 import React from 'react';
 
+import { Well } from 'react-bootstrap';
+
 export const Disclaimer = () => {
   return (<div>
+    <Well bsSize={'small'}>
+      <h5>
+        News
+      </h5>
+      <p>Several Countries added: <strong>Turkey, Australia, Belgium, Argentina</strong></p>
+      <p>Please{' '}
+        <a target={'_blank'} href="https://twitter.com/ilikepiecharts">
+          <i className={'fa fa-twitter'}></i>me</a>{' '}
+        if
+        you'd like to see new countries (which?) or features (what?).</p>
+      <p>Also, if you have
+        feedback on the <strong>data quality per country</strong>,
+        please message me! Thanks!</p>
+    </Well>
     <small>Please note: Large amounts of data might be transferred!</small>
     <h5>Data/Licenses</h5>
     Data based on
