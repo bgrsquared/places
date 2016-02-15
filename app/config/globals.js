@@ -10,6 +10,12 @@ export const projectionParams = new Map([
     translate: [0, 0],
     scale: 4500,
   }],
+  ['BE', {
+    projection: d3geo.geo.mercator(),
+    center: [2, 51.65],
+    translate: [0, 0],
+    scale: 4500,
+  }],
   ['DE', {
     projection: d3geo.geo.mercator(),
     center: [11, 52.5],
@@ -111,6 +117,10 @@ export const hexbinParams = new Map([
     size: [400, 300],
     radius: 2.5,
   }],
+  ['BE', {
+    size: [400, 300],
+    radius: 2.5,
+  }],
   ['AT', {
     size: [400, 300],
     radius: 2.5,
@@ -176,6 +186,7 @@ export const hexbinParams = new Map([
 export const relevantNumber = new Map([
   ['DE', 20],
   ['CH', 5],
+  ['BE', 5],
   ['AT', 5],
   ['PT', 5],
   ['FR', 20],
@@ -202,6 +213,7 @@ export const aspectRatio = new Map([
   ['FR', 'landscape'],
   ['RU', 'landscape'],
   ['ES', 'landscape'],
+  ['BE', 'landscape'],
   ['IN', 'landscape'],
   ['CH', 'landscape'],
   ['AT', 'landscape'],
@@ -215,6 +227,7 @@ export const aspectRatio = new Map([
 export const countryNamesMap = new Map([
   ['AT', 'Austria'],
   ['AU', 'Australia'],
+  ['BE', 'Belgium'],
   ['BR', 'Brasil'],
   ['CA', 'Canada'],
   ['CN', 'China'],
