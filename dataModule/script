@@ -16,7 +16,9 @@
 # CODE="JP"
 # CODE="PT"
 # CODE="AU"
-CODE="BE"
+# CODE="BE"
+# CODE="AR"
+CODE="TR"
 
 mkdir -p ./${CODE}
 
