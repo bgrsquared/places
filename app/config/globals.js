@@ -88,6 +88,12 @@ export const projectionParams = new Map([
     translate: [0, 0],
     scale: 800,
   }],
+  ['AU', {
+    projection: d3geo.geo.mercator(),
+    center: [105.5, -7.5],
+    translate: [0, 0],
+    scale: 400,
+  }],
   ['CN', {
     projection: d3geo.geo.mercator(),
     center: [70, 55],
@@ -157,6 +163,10 @@ export const hexbinParams = new Map([
     size: [400, 300],
     radius: 2.5,
   }],
+  ['AU', {
+    size: [400, 300],
+    radius: 2.5,
+  }],
   [false, {
     size: [400, 300],
     radius: 2.5,
@@ -179,6 +189,7 @@ export const relevantNumber = new Map([
   ['CA', 5],
   ['BR', 20],
   ['CN', 20],
+  ['AU', 10],
 ]);
 
 export const aspectRatio = new Map([
@@ -197,11 +208,13 @@ export const aspectRatio = new Map([
   ['CA', 'landscape'],
   ['BR', 'landscape'],
   ['CN', 'landscape'],
+  ['AU', 'landscape'],
 ]);
 
 // ORDER MATTERS HERE! (GUI will display in this order)
 export const countryNamesMap = new Map([
   ['AT', 'Austria'],
+  ['AU', 'Australia'],
   ['BR', 'Brasil'],
   ['CA', 'Canada'],
   ['CN', 'China'],
