@@ -8,7 +8,10 @@ export const Disclaimer = () => {
       <h5>
         News
       </h5>
-      <p>Several Countries added: <strong>Turkey, Australia, Belgium, Argentina</strong></p>
+      <p>
+        Several Countries added: <strong>Bulgaria, Serbia, Macedonia</strong>
+        <small> (Recently added: Turkey, Australia, Belgium, Argentina)</small>
+      </p>
       <p>Please{' '}
         <a target={'_blank'} href="https://twitter.com/ilikepiecharts">
           <i className={'fa fa-twitter'}></i>me</a>{' '}
