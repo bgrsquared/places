@@ -56,15 +56,3 @@ class Root extends Component {
 
 
 ReactDOM.render(<Root />, document.getElementById('app'));
-
-// Elsewhere, in a component module...
-/*
- import { connect } from 'react-redux';
- import { pushState } from 'redux-router';
-
- connect(
- state => ({ q: state.router.location.query.q }),
-
- { pushState }
- )(SearchBox);
- */

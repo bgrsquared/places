@@ -11,6 +11,7 @@ import ExamplesSuffixContainer from './examplesSuffix/examplesSuffixContainer';
 import { Disclaimer } from './helpers/disclaimer';
 import { Help } from './helpers/help';
 import { aspectRatio } from '../config/globals';
+import { setUrl } from '../config/setUrl';
 
 export default class mainComponent extends Component {
   constructor() {
@@ -30,9 +31,11 @@ export default class mainComponent extends Component {
     const { getRaw, app, setFilter } = this.props;
     const search = queryString.parse(location.search);
     const { country, prefix, suffix, infix } = search;
+    let myCountry = country;
     if (aspectRatio.has(country)) {
       getRaw(country, app.source);
     } else {
+      myCountry = 'CH';
       getRaw('CH', app.source);
     }
     const pre = (prefix && prefix.length ? prefix.split(',') : []);
@@ -42,6 +45,11 @@ export default class mainComponent extends Component {
       start: new Set(pre),
       end: new Set(suf),
       any: new Set(inf),
+    });
+    setUrl(this.context.router, myCountry, {
+      pre,
+      suf,
+      inf,
     });
   }
 
@@ -191,8 +199,7 @@ mainComponent.propTypes = {
   setRegExp: PropTypes.func.isRequired,
 };
 
-/*
- mainComponent.contextTypes = {
- router: PropTypes.object,
- };
- */
+mainComponent.contextTypes = {
+  router: PropTypes.object,
+};
+
