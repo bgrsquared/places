@@ -5,6 +5,7 @@
     "no-case-declarations": [0],
     "react/no-multi-comp": [0],
     "react/jsx-indent-props": [0],
-    "react/jsx-no-bind": [0]
+    "react/jsx-no-bind": [0],
+    "react/jsx-space-before-closing": [0]
   }
 }

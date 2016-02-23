@@ -1,6 +1,7 @@
 /* global ga */
 import React, { Component, PropTypes } from 'react';
 import { Grid, Col, Modal, Button } from 'react-bootstrap';
+import queryString from 'query-string';
 
 import SettingsComponentContainer from './settingsComponent/settingsComponentContainer';
 import ChartContainer from './charts/chartContainer';
@@ -26,8 +27,22 @@ export default class mainComponent extends Component {
     }
 
     // Load initial country
-    const { getRaw, app } = this.props;
-    getRaw('CH', app.source);
+    const { getRaw, app, setFilter } = this.props;
+    const search = queryString.parse(location.search);
+    const { country, prefix, suffix, infix } = search;
+    if (aspectRatio.has(country)) {
+      getRaw(country, app.source);
+    } else {
+      getRaw('CH', app.source);
+    }
+    const pre = (prefix && prefix.length ? prefix.split(',') : []);
+    const suf = (suffix && suffix.length ? suffix.split(',') : []);
+    const inf = (infix && infix.length ? infix.split(',') : []);
+    setFilter({
+      start: new Set(pre),
+      end: new Set(suf),
+      any: new Set(inf),
+    });
   }
 
   showModal(showHelp = false) {
@@ -144,7 +159,7 @@ export default class mainComponent extends Component {
           <br />
           <div style={{ float: 'right' }}>
             <a target={'_blank'} href="http://bgrsquared.com/">
-              <img width={150} src="./assets/Logo.png" alt="bgrsquared" />
+              <img width={150} src="./assets/Logo.png" alt="bgrsquared"/>
             </a>
           </div>
           <br />
@@ -170,7 +185,14 @@ export default class mainComponent extends Component {
 mainComponent.propTypes = {
   app: PropTypes.object,
   getRaw: PropTypes.func.isRequired,
+  params: PropTypes.object.isRequired,
   setFilter: PropTypes.func.isRequired,
   setObject: PropTypes.func.isRequired,
   setRegExp: PropTypes.func.isRequired,
 };
+
+/*
+ mainComponent.contextTypes = {
+ router: PropTypes.object,
+ };
+ */
