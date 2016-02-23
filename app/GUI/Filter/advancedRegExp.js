@@ -76,11 +76,12 @@ export default class AdvancedRegExp extends Component {
     exs.map((e, i) => {
       examples.push(
         <Button
-          key={'regExpl' + i}
+          key={`regExpl${i}`}
           bsSize={'small'}
           onClick={() => { this.setRE(e.regExp); }}
         >{e.name}
         </Button>);
+      return true;
     });
 
     return (
@@ -100,7 +101,7 @@ export default class AdvancedRegExp extends Component {
           bsSize={'xsmall'}
           onClick={() => this.setState({ regExp: this.props.regExp.toString().slice(1, -2) })}
         >Update Regular Expression (needed after loading an example)</Button>
-        <hr/>
+        <hr />
         Examples:{' '}
         <ButtonGroup>{examples}</ButtonGroup>
       </div>);

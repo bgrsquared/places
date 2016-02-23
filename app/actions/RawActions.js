@@ -31,17 +31,11 @@ export function getRaw(ctry, src) {
       break;
   }
 
-  const dataURL = './data/' + ctry + '/data' + source + ctry + '.json';
+  const dataURL = `./data/${ctry}/data${source}${ctry}.json`;
 
-  return dispatch => {
-    return fetch(dataURL)
-      .then(response => {
-        return response.json();
-      })
-      .then(json => {
-        return dispatch(setRaw(json, ctry.slice(0, 2), src));
-      });
-  };
+  return dispatch => fetch(dataURL)
+      .then(response => response.json())
+      .then(json => dispatch(setRaw(json, ctry.slice(0, 2), src)));
 }
 
 export function setFilter(obj) {

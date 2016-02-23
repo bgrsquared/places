@@ -85,17 +85,17 @@ export default class mainComponent extends Component {
       mainContent.push(
         <div key={'mc'}>
           <FilterContainer />
-          <hr/>
+          <hr />
           {core}
-          <hr/>
+          <hr />
           <ExamplesSuffixContainer />
         </div>);
     } else {
       mainContent.push(
         <div key={'loading'}>
           <i className={'fa fa-spinner fa-pulse'}></i> Loading & Preparing Data...
-          <br/>
-          <br/>
+          <br />
+          <br />
           <small>This can take a while... some files are pretty large...</small>
         </div>
       );
@@ -112,7 +112,7 @@ export default class mainComponent extends Component {
             </Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {showHelp ? <Help/> : <Disclaimer/>}
+            {showHelp ? <Help /> : <Disclaimer />}
           </Modal.Body>
         </Modal>
         <div style={{ float: 'left' }}>
@@ -141,13 +141,13 @@ export default class mainComponent extends Component {
             ><i className={'fa fa-question'}></i>
             </Button>{' '}
           </div>
-          <br/>
+          <br />
           <div style={{ float: 'right' }}>
             <a target={'_blank'} href="http://bgrsquared.com/">
-              <img width={150} src="./assets/Logo.png" alt="bgrsquared"/>
+              <img width={150} src="./assets/Logo.png" alt="bgrsquared" />
             </a>
           </div>
-          <br/>
+          <br />
           <div style={{ float: 'right' }}>
             <small>Data
               &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors
@@ -156,10 +156,10 @@ export default class mainComponent extends Component {
         </div>
 
         <div style={{ clear: 'both' }}>
-          <hr/>
+          <hr />
           <Grid fluid>
             <SettingsComponentContainer />
-            <hr/>
+            <hr />
             {mainContent}
           </Grid>
         </div>

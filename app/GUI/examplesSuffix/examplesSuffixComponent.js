@@ -28,7 +28,7 @@ export default class ExamplesSuffixContainer extends Component {
       sfxButtons.push(
         <Button
           bsSize={'xsmall'}
-          key={'ex' + i}
+          key={`ex${i}`}
           style={{ marginTop: '-1px', borderRadius: '0px' }}
           onClick={() => {
             setFilter(
@@ -37,6 +37,7 @@ export default class ExamplesSuffixContainer extends Component {
         >
           {s.join(', ')}
         </Button>);
+      return true;
     });
 
     const content = [];

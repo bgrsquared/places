@@ -23,11 +23,12 @@ export default class FilterComponent extends Component {
     if (!filteredTowns.length) {
       filterText.push(<span key={'nt'}>No places loaded, try relaxing the filter.</span>);
     } else if (filteredTowns.length === allTowns.length) {
-      filterText.push(<span key={'at'}>All {allTowns.length} places loaded, no active filter.</span>);
+      filterText.push(<span key={'at'}>All {allTowns.length} places
+        loaded, no active filter.</span>);
     } else {
       filterText.push(<div key={'ft'}>
         {filteredTowns.length} of {allTowns.length} places loaded
-        ({(Math.round(10000 * filteredTowns.length / allTowns.length) / 100) + '%'})
+        ({`${(Math.round(10000 * filteredTowns.length / allTowns.length) / 100)}%`})
       </div>);
     }
 

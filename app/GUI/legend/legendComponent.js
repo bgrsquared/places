@@ -16,11 +16,7 @@ export default class LegendComponent extends Component {
 
     const formattedNames = names
       .sort(sortNames)
-      .map(n => {
-        return n.replace(regExp, s => {
-          return '(' + s + ')';
-        });
-      });
+      .map(n => n.replace(regExp, s => `(${s})`));
 
     const matchText = [];
 
@@ -28,10 +24,8 @@ export default class LegendComponent extends Component {
       //
     } else if (length < fullLength) {
       matchText.push(<small key={'some'}>
-        {length +
-        ' of ' + fullLength + ' places match the filter (' +
-        (fullLength ? (Math.round(10000 * length / fullLength) / 100) : 0) +
-        '%)'}
+        {`${length} of ${fullLength} places match
+        the filter (${(fullLength ? (Math.round(10000 * length / fullLength) / 100) : 0)}%)`}
       </small>);
     } else {
       matchText.push(<small key={'all'}>

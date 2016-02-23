@@ -8,15 +8,10 @@ require('../node_modules/font-awesome/css/font-awesome.min.css');
 // CORE
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import { Button } from 'react-bootstrap';
 
 import { combineReducers, applyMiddleware, compose, createStore } from 'redux';
 import { Provider } from 'react-redux';
-import { reduxReactRouter, routerStateReducer, ReduxRouter } from 'redux-router';
-import { createHistory } from 'history';
-import { Route } from 'react-router';
-import { devTools } from 'redux-devtools';
-import { DevTools, DebugPanel, LogMonitor } from 'redux-devtools/lib/react';
+import { Router, Route, browserHistory } from 'react-router';
 import thunkMiddleware from 'redux-thunk';
 
 require('./style/myStyle.scss');
@@ -27,24 +22,20 @@ import App from './GUI/mainContainer';
 
 // Configure routes like normal
 const routes = (
-  <Route path="/" component={App}>
-    <Route path="places" component={App}/>
-  </Route>
+  <Router history={browserHistory}>
+    <Route path="/" component={App}>
+      <Route path="/:country" component={App} />
+      <Route path="places" component={App} />
+    </Route>
+  </Router>
 );
 
 const reducer = combineReducers({
-  router: routerStateReducer,
   app: coreReducer,
 });
 
-// Compose reduxReactRouter with other store enhancers
 const store = compose(
-  applyMiddleware(thunkMiddleware),
-  reduxReactRouter({
-    routes,
-    createHistory,
-  }),
-  devTools()
+  applyMiddleware(thunkMiddleware)
 )(createStore)(reducer);
 
 class Root extends Component {
@@ -56,35 +47,10 @@ class Root extends Component {
   }
 
   render() {
-    const { showDebug } = this.state;
-    const debug = [];
-    const debugButton = [];
-    if (__DEVTOOLS__) {
-      debugButton.push(<Button
-        bsSize={'small'}
-        bsStyle={'danger'}
-        key={'dbgBtn'}
-        onClick={() => {this.setState({ showDebug: !showDebug }); }}
-      >Redux Debug (dev mode)
-      </Button>);
-      debugButton.push(<hr key={'hr'}/>);
-      if (showDebug) {
-        debug.push(
-          <DebugPanel bottom right top key={'dbgPnl'}>
-            <DevTools monitor={LogMonitor} store={store}/>
-          </DebugPanel>
-        );
-      }
-    }
-
     return (
-      <div>
-        {debugButton}
-        <Provider store={store}>
-          <ReduxRouter />
-        </Provider>
-        {debug}
-      </div>
+      <Provider store={store}>
+        {routes}
+      </Provider>
     );
   }
 }

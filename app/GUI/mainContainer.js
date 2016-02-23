@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { pushState } from 'redux-router';
 import { bindActionCreators } from 'redux';
 import * as RawActions from '../actions/RawActions';
 
@@ -15,7 +14,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   const allActions = Object.assign({},
-    bindActionCreators(RawActions, dispatch), { dispatch }, { pushState });
+    bindActionCreators(RawActions, dispatch), { dispatch });
   return allActions;
 }
 

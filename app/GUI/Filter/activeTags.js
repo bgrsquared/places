@@ -18,12 +18,13 @@ export default class ActiveTags extends Component {
     Array.from(tags).sort().map((t, i) => {
       buttons.push(
         <Button bsSize={'xsmall'}
-                key={'tag' + i}
+                key={`tag${i}`}
                 style={{ marginTop: '-1px', borderRadius: '0px' }}
                 onClick={() => { this.removeTag(t); }}
         >
           &times; {t}
         </Button>);
+      return true;
     });
 
     const content = [];

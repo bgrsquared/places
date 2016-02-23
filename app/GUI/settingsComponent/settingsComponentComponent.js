@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { countryNamesMap, multiplierTextMap, layoutTextMap, }
+import { countryNamesMap, multiplierTextMap, layoutTextMap }
   from '../../config/globals';
 
 export default class SettingsComponentComponent extends Component {
@@ -83,9 +83,10 @@ export default class SettingsComponentComponent extends Component {
       >
         {sourceMap.get(s.key)}
       </MenuItem>);
+      return true;
     });
 
-    srcbtns.splice(1, 0, <MenuItem divider key={'divider'}/>);
+    srcbtns.splice(1, 0, <MenuItem divider key={'divider'} />);
     srcbtns.splice(2, 0,
       <MenuItem header key={'warn'}>Note: Stage 2 & 3 can be large files</MenuItem>);
 
@@ -101,6 +102,7 @@ export default class SettingsComponentComponent extends Component {
       >
         {countryNamesMap.get(c)}
       </MenuItem>);
+      return true;
     });
 
     const layouts = [
@@ -121,6 +123,7 @@ export default class SettingsComponentComponent extends Component {
       >
         {layoutTextMap.get(l.join(','))}
       </MenuItem>);
+      return true;
     });
 
 
@@ -144,7 +147,7 @@ export default class SettingsComponentComponent extends Component {
           <DropdownButton
             id={'sb1'}
             bsStyle={'primary'}
-            title={country ? 'Country: ' + countryNamesMap.get(country) :
+            title={country ? `Country: ${countryNamesMap.get(country)}` :
           <span><i className={'fa fa-spinner fa-pulse'}></i> Loading...</span>}
           >
             {btns}
@@ -152,7 +155,7 @@ export default class SettingsComponentComponent extends Component {
           <DropdownButton
             id={'sb2'}
             bsStyle={sourceStyle}
-            title={'Data: ' + sourceMap.get(source)}
+            title={`Data: ${sourceMap.get(source)}`}
           >
             {srcbtns}
           </DropdownButton>
@@ -161,14 +164,14 @@ export default class SettingsComponentComponent extends Component {
             bsStyle={advancedMode ? 'danger' : 'default'}
             onClick={() => { this.changeMode(!advancedMode); }}
           >
-            {'Mode: ' + (advancedMode ? 'Advanced' : 'Standard')}
+            {`Mode: ${(advancedMode ? 'Advanced' : 'Standard')}`}
           </Button>
         </ButtonToolbar>
         <h4>Layout</h4>
         <ButtonToolbar>
           <DropdownButton
             id={'sb4'}
-            title={'Circle Size: ' + multiplierTextMap.get(radiusMultiplier)}
+            title={`Circle Size: ${multiplierTextMap.get(radiusMultiplier)}`}
             bsStyle={radiusMultiplier === 1 / 2 ? 'danger' : 'default'}
           >
             <MenuItem
@@ -205,12 +208,12 @@ export default class SettingsComponentComponent extends Component {
             bsStyle={circleWeighted ? 'primary' : 'default'}
             onClick={() => { this.changeWeight(!circleWeighted); }}
           >
-            {'Circle Size: ' +
-            (circleWeighted ? 'Weighted by Number of Places' : 'Equally large Circles')}
+            {`Circle Size: ${(circleWeighted ? 'Weighted by Number of Places' :
+              'Equally large Circles')}`}
           </Button>
           <DropdownButton
             id={'sb7'}
-            title={'Layout: ' + layoutTextMap.get(layout.join(','))}
+            title={`Layout: ${layoutTextMap.get(layout.join(','))}`}
             bsStyle={layout.join(',') !== 'auto' ? 'warning' : 'default'}
           >
             {layoutBtns}

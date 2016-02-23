@@ -2,13 +2,13 @@ export const filteredData = (data, obj, link) => {
   const { start, end, any } = obj;
   const regexpText = [];
   if (start.size) {
-    regexpText.push('^(' + Array.from(start).join('|') + ')');
+    regexpText.push(`^(${Array.from(start).join('|')})`);
   }
   if (any.size) {
-    regexpText.push('(' + Array.from(any).join('|') + ')');
+    regexpText.push(`(${Array.from(any).join('|')})`);
   }
   if (end.size) {
-    regexpText.push('(' + Array.from(end).join('|') + ')$');
+    regexpText.push(`(${Array.from(end).join('|')})$`);
   }
 
   const joiner = (link === 'AND' ? '.*' : '|');
@@ -27,6 +27,4 @@ export const filteredData = (data, obj, link) => {
   };
 };
 
-export const filteredDataRegExp = (data, regExp) => {
-  return data.filter(s => s.name.match(regExp));
-};
+export const filteredDataRegExp = (data, regExp) => data.filter(s => s.name.match(regExp));
