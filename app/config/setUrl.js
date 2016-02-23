@@ -3,9 +3,9 @@ export const setUrl = (router, country, filters) => {
   router.push({
     query: {
       country,
-      p: pre.join(','),
-      s: suf.join(','),
-      i: inf.join(','),
+      p: btoa(pre.join(',')),
+      s: btoa(suf.join(',')),
+      i: btoa(inf.join(',')),
     },
   });
 };

@@ -38,9 +38,9 @@ export default class mainComponent extends Component {
       myCountry = 'CH';
       getRaw('CH', app.source);
     }
-    const pre = (prefix && prefix.length ? prefix.split(',') : []);
-    const suf = (suffix && suffix.length ? suffix.split(',') : []);
-    const inf = (infix && infix.length ? infix.split(',') : []);
+    const pre = (prefix && prefix.length ? atob(prefix).split(',') : []);
+    const suf = (suffix && suffix.length ? atob(suffix).split(',') : []);
+    const inf = (infix && infix.length ? atob(infix).split(',') : []);
     setFilter({
       start: new Set(pre),
       end: new Set(suf),
