@@ -30,7 +30,7 @@ export default class mainComponent extends Component {
     // Load initial country
     const { getRaw, app, setFilter } = this.props;
     const search = queryString.parse(location.search);
-    const { country, prefix, suffix, infix } = search;
+    const { country, p: prefix, s: suffix, i: infix } = search;
     let myCountry = country;
     if (aspectRatio.has(country)) {
       getRaw(country, app.source);
