@@ -8,9 +8,13 @@ export const Disclaimer = () => (<div>
       News
     </h5>
     <p>
-      Several Countries added: <strong>Bulgaria, Serbia, Macedonia</strong>
-      <small> (Recently added: Turkey, Australia, Belgium, Argentina)</small>
+      <strong>Experimental:</strong> You can now copy/paste URLs of your favourite examples!
+      (Countries and std/adv filters are stored).
     </p>
+    <p>
+      Most recently added countries: Bulgaria, Serbia, Macedonia
+    </p>
+    <hr/>
     <p>Please{' '}
       <a target={'_blank'} href="https://twitter.com/ilikepiecharts">
         <i className={'fa fa-twitter'}></i>me</a>{' '}
