@@ -3,6 +3,7 @@ export const setUrl = (router, country, filters) => {
   router.push({
     query: {
       country,
+      v: '0.1', // url version
       p: btoa(unescape(encodeURIComponent(pre.join(',')))),
       s: btoa(unescape(encodeURIComponent(suf.join(',')))),
       i: btoa(unescape(encodeURIComponent(inf.join(',')))),

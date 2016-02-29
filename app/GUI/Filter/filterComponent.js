@@ -112,14 +112,35 @@ export default class FilterComponent extends Component {
       </Grid>);
     } else {
       content.push(
-        <AdvancedRegExp key={'advFilter'}
-                        regExp={regExp}
-                        setRegExp={setRegExp}
-        />
+        <Grid fluid key={'advFilterGrid'}>
+          <Row>
+            <Col xs={12}>
+              <h3>Filter</h3>
+            </Col>
+          </Row>
+          <Row>
+            <Col xs={12}>
+              <AdvancedRegExp key={'advFilter'}
+                              regExp={regExp}
+                              setRegExp={setRegExp}
+              />
+            </Col>
+          </Row>
+          <hr/>
+          <Row>
+            <Col xs={12}>
+              <Well>
+                {filterText}
+              </Well>
+            </Col>
+          </Row>
+        </Grid>
       );
     }
 
-    return (<div>{content}</div>);
+    return (
+      <div>{content}</div>
+    );
   }
 }
 
