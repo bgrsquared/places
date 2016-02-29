@@ -9,16 +9,20 @@ export default class FilterComponent extends Component {
   setFilterLinkInternal(type) {
     const { app, setFilterLink } = this.props;
     const { filterObject } = app;
-    setFilterLink(filterObject, type);
+    setFilterLink(filterObject, type, this.context.router);
+  }
+
+  setFilterInternal(obj) {
+    const { setFilter } = this.props;
+    setFilter(obj, this.context.router);
   }
 
   render() {
-    const { app, setFilter, setRegExp } = this.props;
+    const { app, setRegExp } = this.props;
     const { filterObject, filterLink, regExp, advancedMode, allTowns, filteredTowns } = app;
     const { start, end, any } = filterObject;
 
     const content = [];
-
     const filterText = [];
     if (!filteredTowns.length) {
       filterText.push(<span key={'nt'}>No places loaded, try relaxing the filter.</span>);
@@ -59,42 +63,42 @@ export default class FilterComponent extends Component {
             <h4>Starts with...</h4>
             <NewTag
               position={'start'}
-              setFilter={setFilter}
+              setFilter={(o) => this.setFilterInternal(o)}
               filterObject={filterObject}
             />
             <ActiveTags
               position={'start'}
               tags={start}
               filterObject={filterObject}
-              setFilter={setFilter}
+              setFilter={(o) => this.setFilterInternal(o)}
             />
           </Col>
           <Col xs={4}>
             <h4>Ends in...</h4>
             <NewTag
               position={'end'}
-              setFilter={setFilter}
+              setFilter={(o) => this.setFilterInternal(o)}
               filterObject={filterObject}
             />
             <ActiveTags
               position={'end'}
               tags={end}
+              setFilter={(o) => this.setFilterInternal(o)}
               filterObject={filterObject}
-              setFilter={setFilter}
             />
           </Col>
           <Col xs={4}>
             <h4>Contains...</h4>
             <NewTag
               position={'any'}
-              setFilter={setFilter}
+              setFilter={(o) => this.setFilterInternal(o)}
               filterObject={filterObject}
             />
             <ActiveTags
               position={'any'}
               tags={any}
               filterObject={filterObject}
-              setFilter={setFilter}
+              setFilter={(o) => this.setFilterInternal(o)}
             />
           </Col>
         </Row>
@@ -124,4 +128,8 @@ FilterComponent.propTypes = {
   setFilter: PropTypes.func.isRequired,
   setFilterLink: PropTypes.func.isRequired,
   setRegExp: PropTypes.func.isRequired,
+};
+
+FilterComponent.contextTypes = {
+  router: PropTypes.object,
 };

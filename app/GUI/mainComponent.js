@@ -28,9 +28,9 @@ export default class mainComponent extends Component {
     }
 
     // Load initial country
-    const { getRaw, app, setFilter } = this.props;
+    const { getRaw, app, setFilterLink } = this.props;
     const search = queryString.parse(location.search);
-    const { country, p: prefix, s: suffix, i: infix } = search;
+    const { country, p: prefix, s: suffix, i: infix, l: link } = search;
     let myCountry = country;
     if (aspectRatio.has(country)) {
       getRaw(country, app.source);
@@ -38,18 +38,26 @@ export default class mainComponent extends Component {
       myCountry = 'CH';
       getRaw('CH', app.source);
     }
-    const pre = (prefix && prefix.length ? atob(prefix).split(',') : []);
-    const suf = (suffix && suffix.length ? atob(suffix).split(',') : []);
-    const inf = (infix && infix.length ? atob(infix).split(',') : []);
-    setFilter({
+
+    // Load initial filter
+    const pre = (prefix && prefix.length ?
+      decodeURIComponent(escape(window.atob(prefix))).split(',') : []);
+    const suf = (suffix && suffix.length ?
+      decodeURIComponent(escape(window.atob(suffix))).split(',') : []);
+    const inf = (infix && infix.length ?
+      decodeURIComponent(escape(window.atob(infix))).split(',') : []);
+    const lin = (link && link.length ?
+      atob(link) : 'AND');
+    setFilterLink({
       start: new Set(pre),
       end: new Set(suf),
       any: new Set(inf),
-    });
+    }, lin);
     setUrl(this.context.router, myCountry, {
       pre,
       suf,
       inf,
+      lin,
     });
   }
 
@@ -194,7 +202,7 @@ mainComponent.propTypes = {
   app: PropTypes.object,
   getRaw: PropTypes.func.isRequired,
   params: PropTypes.object.isRequired,
-  setFilter: PropTypes.func.isRequired,
+  setFilterLink: PropTypes.func.isRequired,
   setObject: PropTypes.func.isRequired,
   setRegExp: PropTypes.func.isRequired,
 };

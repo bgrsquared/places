@@ -8,6 +8,8 @@ import {
 import { projection, buildHexbins } from './helpers/dataStructure';
 import { filteredData, filteredDataRegExp } from './helpers/filterFunction';
 
+import { setUrl } from '../config/setUrl';
+
 const initialState = {
   country: false,
   source: 'OSM2',
@@ -91,7 +93,15 @@ export default function coreReducer(state = initialState, action) {
           regExp: rE,
         });
     case SET_FILTER:
-      const { obj, link } = action;
+      const { obj, link, router } = action;
+      if (router) {
+        setUrl(router, state.country, {
+          pre: Array.from(obj.start),
+          inf: Array.from(obj.any),
+          suf: Array.from(obj.end),
+          lin: link,
+        });
+      }
       const newLink = { filterLink: state.filterLink };
       if (link) {
         newLink.filterLink = link;

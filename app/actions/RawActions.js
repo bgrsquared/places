@@ -38,10 +38,11 @@ export function getRaw(ctry, src) {
       .then(json => dispatch(setRaw(json, ctry.slice(0, 2), src)));
 }
 
-export function setFilter(obj) {
+export function setFilter(obj, router) {
   return {
     type: types.SET_FILTER,
     obj,
+    router,
   };
 }
 
@@ -52,10 +53,11 @@ export function setRegExp(regExp) {
   };
 }
 
-export function setFilterLink(obj, link) {
+export function setFilterLink(obj, link, router) {
   return {
     type: types.SET_FILTER,
     obj,
+    router,
     link,
   };
 }
