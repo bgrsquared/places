@@ -8,7 +8,7 @@ export const setUrl = (router, country, filters) => {
       i: btoa(unescape(encodeURIComponent(inf.join(',')))),
       l: btoa(lin),
       m: btoa(mod),
-      r: btoa(reg.toString()),
+      r: btoa(unescape(encodeURIComponent(reg.toString()))),
     },
   });
 };

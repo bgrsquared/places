@@ -41,17 +41,17 @@ export default class mainComponent extends Component {
 
     // Load initial filter
     const pre = (prefix && prefix.length ?
-      decodeURIComponent(escape(window.atob(prefix))).split(',') : []);
+      decodeURIComponent(escape(atob(prefix))).split(',') : []);
     const suf = (suffix && suffix.length ?
-      decodeURIComponent(escape(window.atob(suffix))).split(',') : []);
+      decodeURIComponent(escape(atob(suffix))).split(',') : []);
     const inf = (infix && infix.length ?
-      decodeURIComponent(escape(window.atob(infix))).split(',') : []);
+      decodeURIComponent(escape(atob(infix))).split(',') : []);
     const lin = (link && link.length ?
       atob(link) : 'AND');
     const mod = (mode && mode.length ?
       atob(mode) === 'true' : false);
     const reg = (regExp && regExp.length ?
-      atob(regExp) : new RegExp('.*', 'i'));
+      decodeURIComponent(escape(atob(regExp))) : new RegExp('.*', 'i'));
 
     // set mode
     setObject({
