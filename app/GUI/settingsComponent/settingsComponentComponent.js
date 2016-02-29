@@ -1,7 +1,11 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { countryNamesMap, multiplierTextMap, layoutTextMap }
+import { setUrl } from '../../config/setUrl';
+
+import {
+  countryNamesMap, multiplierTextMap, layoutTextMap,
+}
   from '../../config/globals';
 
 export default class SettingsComponentComponent extends Component {
@@ -38,8 +42,22 @@ export default class SettingsComponentComponent extends Component {
 
   chooseSource(ctry, src) {
     const { getRaw, setRaw, app, setObject } = this.props;
-    const { cacheData } = app;
+    const { cacheData, filterObject, filterLink } = app;
+
+    // set loading state
     setObject({ country: false });
+
+    // set new url
+    if (this.context.router) {
+      setUrl(this.context.router, ctry, {
+        pre: Array.from(filterObject.start),
+        inf: Array.from(filterObject.any),
+        suf: Array.from(filterObject.end),
+        lin: filterLink,
+      });
+    }
+
+    // set/get new data
     if (cacheData[ctry + src]) {
       setRaw(cacheData[ctry + src], ctry, src);
     } else {
@@ -86,7 +104,7 @@ export default class SettingsComponentComponent extends Component {
       return true;
     });
 
-    srcbtns.splice(1, 0, <MenuItem divider key={'divider'} />);
+    srcbtns.splice(1, 0, <MenuItem divider key={'divider'}/>);
     srcbtns.splice(2, 0,
       <MenuItem header key={'warn'}>Note: Stage 2 & 3 can be large files</MenuItem>);
 
@@ -231,4 +249,8 @@ SettingsComponentComponent.propTypes = {
   setObject: PropTypes.func.isRequired,
   setRaw: PropTypes.func.isRequired,
   setRegExp: PropTypes.func.isRequired,
+};
+
+SettingsComponentComponent.contextTypes = {
+  router: PropTypes.object,
 };

@@ -210,4 +210,3 @@ mainComponent.propTypes = {
 mainComponent.contextTypes = {
   router: PropTypes.object,
 };
-
