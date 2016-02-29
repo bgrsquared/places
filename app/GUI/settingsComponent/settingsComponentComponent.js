@@ -21,11 +21,25 @@ export default class SettingsComponentComponent extends Component {
   }
 
   changeMode(advancedMode) {
-    const { setObject, setFilter } = this.props;
+    const { setObject, setFilter, app } = this.props;
+    const { country, filterObject, filterLink } = app;
+
     setObject({
       advancedMode,
       regExp: '.*',
     });
+
+    // set new url
+    if (this.context.router) {
+      setUrl(this.context.router, country, {
+        pre: Array.from(filterObject.start),
+        inf: Array.from(filterObject.any),
+        suf: Array.from(filterObject.end),
+        lin: filterLink,
+        mod: advancedMode,
+      });
+    }
+
     setFilter({
       start: new Set(),
       end: new Set(),
@@ -42,7 +56,7 @@ export default class SettingsComponentComponent extends Component {
 
   chooseSource(ctry, src) {
     const { getRaw, setRaw, app, setObject } = this.props;
-    const { cacheData, filterObject, filterLink } = app;
+    const { cacheData, filterObject, filterLink, advancedMode } = app;
 
     // set loading state
     setObject({ country: false });
@@ -54,6 +68,7 @@ export default class SettingsComponentComponent extends Component {
         inf: Array.from(filterObject.any),
         suf: Array.from(filterObject.end),
         lin: filterLink,
+        mod: advancedMode,
       });
     }
 

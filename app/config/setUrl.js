@@ -1,5 +1,5 @@
 export const setUrl = (router, country, filters) => {
-  const { pre, suf, inf, lin } = filters;
+  const { pre, suf, inf, lin, mod } = filters;
   router.push({
     query: {
       country,
@@ -7,6 +7,7 @@ export const setUrl = (router, country, filters) => {
       s: btoa(unescape(encodeURIComponent(suf.join(',')))),
       i: btoa(unescape(encodeURIComponent(inf.join(',')))),
       l: btoa(lin),
+      m: btoa(mod),
     },
   });
 };
