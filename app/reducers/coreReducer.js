@@ -8,7 +8,7 @@ import {
 import { projection, buildHexbins } from './helpers/dataStructure';
 import { filteredData, filteredDataRegExp } from './helpers/filterFunction';
 
-import { setUrl } from '../config/setUrl';
+import { setUrl } from '../config/urlTools';
 
 const initialState = {
   country: false,

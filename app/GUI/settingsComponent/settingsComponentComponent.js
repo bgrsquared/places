@@ -1,7 +1,7 @@
 import React, { Component, PropTypes } from 'react';
 import { Grid, Button, ButtonToolbar, DropdownButton, MenuItem } from 'react-bootstrap';
 
-import { setUrl } from '../../config/setUrl';
+import { setUrl } from '../../config/urlTools';
 
 import {
   countryNamesMap, multiplierTextMap, layoutTextMap,

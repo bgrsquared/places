@@ -11,7 +11,7 @@ import ExamplesSuffixContainer from './examplesSuffix/examplesSuffixContainer';
 import { Disclaimer } from './helpers/disclaimer';
 import { Help } from './helpers/help';
 import { aspectRatio } from '../config/globals';
-import { setUrl } from '../config/setUrl';
+import { setUrl } from '../config/urlTools';
 
 export default class mainComponent extends Component {
   constructor() {
