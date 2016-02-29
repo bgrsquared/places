@@ -24,7 +24,7 @@ export default class AdvancedRegExp extends Component {
     this.setState({ regExp: newExp });
     try {
       RegExp(newExp);
-      setRegExp(RegExp(newExp, 'i'));
+      setRegExp(RegExp(newExp, 'i'), this.context.router);
     } catch (err) {
       // do nothing
     }
@@ -111,4 +111,8 @@ export default class AdvancedRegExp extends Component {
 AdvancedRegExp.propTypes = {
   regExp: PropTypes.any,
   setRegExp: PropTypes.func.isRequired,
+};
+
+AdvancedRegExp.contextTypes = {
+  router: PropTypes.object,
 };

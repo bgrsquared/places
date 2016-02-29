@@ -28,9 +28,9 @@ export default class mainComponent extends Component {
     }
 
     // Load initial country
-    const { getRaw, app, setFilterLink, setObject } = this.props;
+    const { getRaw, app, setFilterLink, setObject, setRegExp } = this.props;
     const search = queryString.parse(location.search);
-    const { country, p: prefix, s: suffix, i: infix, l: link, m: mode } = search;
+    const { country, p: prefix, s: suffix, i: infix, l: link, m: mode, r: regExp } = search;
     let myCountry = country;
     if (aspectRatio.has(country)) {
       getRaw(country, app.source);
@@ -38,9 +38,6 @@ export default class mainComponent extends Component {
       myCountry = 'CH';
       getRaw('CH', app.source);
     }
-
-    // set mode
-    setObject({ advancedMode: mode });
 
     // Load initial filter
     const pre = (prefix && prefix.length ?
@@ -52,18 +49,36 @@ export default class mainComponent extends Component {
     const lin = (link && link.length ?
       atob(link) : 'AND');
     const mod = (mode && mode.length ?
-      atob(mode) : false);
-    setFilterLink({
-      start: new Set(pre),
-      end: new Set(suf),
-      any: new Set(inf),
-    }, lin);
+      atob(mode) === 'true' : false);
+    const reg = (regExp && regExp.length ?
+      atob(regExp) : new RegExp('.*', 'i'));
+
+    // set mode
+    setObject({
+      advancedMode: mod,
+      country: myCountry,
+    });
+
+
+    if (mod) {
+      // set regExp
+      setRegExp(new RegExp(reg.slice(1, -2), 'i'), this.context.router);
+    } else {
+      // set filter
+      setFilterLink({
+        start: new Set(pre),
+        end: new Set(suf),
+        any: new Set(inf),
+      }, lin);
+    }
+
     setUrl(this.context.router, myCountry, {
       pre,
       suf,
       inf,
       lin,
       mod,
+      reg,
     });
   }
 

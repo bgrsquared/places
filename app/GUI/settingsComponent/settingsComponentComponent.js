@@ -24,9 +24,11 @@ export default class SettingsComponentComponent extends Component {
     const { setObject, setFilter, app } = this.props;
     const { country, filterObject, filterLink } = app;
 
+    const emptyRE = new RegExp('.*', 'i');
+
     setObject({
       advancedMode,
-      regExp: '.*',
+      regExp: emptyRE,
     });
 
     // set new url
@@ -37,6 +39,7 @@ export default class SettingsComponentComponent extends Component {
         suf: Array.from(filterObject.end),
         lin: filterLink,
         mod: advancedMode,
+        reg: emptyRE,
       });
     }
 
@@ -56,7 +59,7 @@ export default class SettingsComponentComponent extends Component {
 
   chooseSource(ctry, src) {
     const { getRaw, setRaw, app, setObject } = this.props;
-    const { cacheData, filterObject, filterLink, advancedMode } = app;
+    const { cacheData, filterObject, filterLink, advancedMode, regExp } = app;
 
     // set loading state
     setObject({ country: false });
@@ -69,6 +72,7 @@ export default class SettingsComponentComponent extends Component {
         suf: Array.from(filterObject.end),
         lin: filterLink,
         mod: advancedMode,
+        reg: regExp,
       });
     }
 

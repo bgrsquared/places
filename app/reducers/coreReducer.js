@@ -76,17 +76,26 @@ export default function coreReducer(state = initialState, action) {
         cacheData: Object.assign({}, state.cacheData, { [action.ctry + action.src]: action.raw }),
       });
     case SET_REGEXP:
-      const rE = action.regExp;
-
+      const { router: rrouter, regExp: rE } = action;
+      if (rrouter) {
+        setTimeout(() =>
+          setUrl(rrouter, state.country, {
+            pre: Array.from(state.filterObject.start),
+            inf: Array.from(state.filterObject.any),
+            suf: Array.from(state.filterObject.end),
+            mod: state.advancedMode,
+            lin: state.filterLink,
+            reg: rE,
+          }), 100);
+      }
       const filt = filteredDataRegExp(allTowns, rE);
-
       return Object.assign({}, state,
         {
           filteredTowns: filt,
           filterObject: {
-            start: new Set(['custom']),
-            end: new Set(['custom']),
-            any: new Set(['custom']),
+            start: new Set([]),
+            end: new Set([]),
+            any: new Set([]),
           },
           hexbin: buildHexbins(allTowns, filt, state.country, state.radiusMultiplier),
           activeNode: initialState.activeNode,
@@ -99,7 +108,9 @@ export default function coreReducer(state = initialState, action) {
           pre: Array.from(obj.start),
           inf: Array.from(obj.any),
           suf: Array.from(obj.end),
+          mod: state.advancedMode,
           lin: link,
+          reg: state.regExp,
         });
       }
       const newLink = { filterLink: state.filterLink };

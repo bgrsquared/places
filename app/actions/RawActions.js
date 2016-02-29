@@ -46,10 +46,11 @@ export function setFilter(obj, router) {
   };
 }
 
-export function setRegExp(regExp) {
+export function setRegExp(regExp, router) {
   return {
     type: types.SET_REGEXP,
     regExp,
+    router,
   };
 }
 
