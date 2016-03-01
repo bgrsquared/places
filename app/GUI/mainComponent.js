@@ -56,7 +56,6 @@ export default class mainComponent extends Component {
     // set mode
     setObject({
       advancedMode: mod,
-      country: myCountry,
     });
 
 
