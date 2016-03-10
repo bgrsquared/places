@@ -24,7 +24,10 @@
 # CODE="MK"
 # CODE="NL"
 # CODE="PL"
-CODE="DK"
+# CODE="DK"
+# CODE="SE"
+# CODE="NO"
+CODE="FI"
 
 mkdir -p ./${CODE}
 
