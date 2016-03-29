@@ -64,6 +64,12 @@ export const projectionParams = new Map([
     translate: [0, 0],
     scale: 1100,
   }],
+  ['HU', {
+    projection: d3geo.geo.mercator(),
+    center: [16, 49],
+    translate: [0, 0],
+    scale: 3250,
+  }],
   ['GB', {
     projection: d3geo.geo.mercator(),
     center: [-9.5, 61],
@@ -203,6 +209,10 @@ export const hexbinParams = new Map([
     size: [400, 300],
     radius: 2.5,
   }],
+  ['HU', {
+    size: [400, 300],
+    radius: 2.5,
+  }],
   ['AT', {
     size: [400, 300],
     radius: 2.5,
@@ -310,6 +320,7 @@ export const relevantNumber = new Map([
   ['TR', 5],
   ['BG', 5],
   ['MK', 5],
+  ['HU', 5],
   ['FR', 20],
   ['ES', 20],
   ['GB', 20],
@@ -339,6 +350,7 @@ export const aspectRatio = new Map([
   ['NO', 'portrait'],
   ['US', 'landscape'],
   ['PL', 'landscape'],
+  ['HU', 'landscape'],
   ['BG', 'landscape'],
   ['TR', 'landscape'],
   ['FR', 'landscape'],
@@ -370,6 +382,7 @@ export const countryNamesMap = new Map([
   ['FR', 'France'],
   ['DE', 'Germany'],
   ['GB', 'Great Britain'],
+  ['HU', 'Hungary'],
   ['IN', 'India'],
   ['IT', 'Italy'],
   ['JP', 'Japan'],
