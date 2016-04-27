@@ -12,10 +12,11 @@ export const Disclaimer = () => (<div>
       (Countries and std/adv filters are stored).
     </p>
     <p>
-      Most recently added countries: Hungary
+      Most recently added countries: <strong>Iran</strong> (experimental, due to Farsi)
+      - if you have feedback on the implementation, please contact me!
     </p>
     <p>
-      <small>Previously: Finland, Norway, Sweden</small>
+      <small>Previously: Finland, Norway, Sweden, Hungary</small>
     </p>
     <hr/>
     <p>Please{' '}
