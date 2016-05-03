@@ -107,6 +107,24 @@ export default class ChartComponent extends Component {
         height={'100%'}
         viewBox={`0 0 ${size[0]} ${size[1]}`}
       >
+        {fixedNode ? <g transform="translate(4,4)"
+                        onClick={() => {
+            setObject({ fixedNode: false });
+          }}
+        >
+          <rect
+            width={76}
+            height={12}
+            fill={'transparent'}
+            stroke={'orangered'}
+            strokeWidth={1}
+            rx={5}
+            ry={5}
+          />
+          <text y={8} x={3} fontSize={6}>
+            Fixed node, click to release
+          </text>
+        </g> : ''}
         {dots}
       </svg>
     </div>);
