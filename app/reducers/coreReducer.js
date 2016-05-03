@@ -71,7 +71,8 @@ export default function coreReducer(state = initialState, action) {
         filteredTowns: fiTo,
         filterObject: state.filterObject,
         hexbin: buildHexbins(towns, fiTo, action.ctry, state.radiusMultiplier),
-        activeNode: state.activeNode,
+        activeNode: initialState.activeNode, // RESET
+        fixedNode: false,
         appReady: true,
         regExp: state.regExp,
         country: action.ctry,

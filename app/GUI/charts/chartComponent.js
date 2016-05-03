@@ -124,8 +124,10 @@ export default class ChartComponent extends Component {
           <text y={8} x={3} fontSize={6}>
             Fixed node, click to release
           </text>
-        </g> : ''}
-        {dots}
+        </g> : <g></g>}
+        <g>
+          {dots}
+        </g>
       </svg>
     </div>);
   }
