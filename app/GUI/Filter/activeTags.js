@@ -17,10 +17,11 @@ export default class ActiveTags extends Component {
     const buttons = [];
     Array.from(tags).sort().map((t, i) => {
       buttons.push(
-        <Button bsSize={'xsmall'}
-                key={`tag${i}`}
-                style={{ marginTop: '-1px', borderRadius: '0px' }}
-                onClick={() => { this.removeTag(t); }}
+        <Button
+          bsSize={'xsmall'}
+          key={`tag${i}`}
+          style={{ marginTop: '-1px', borderRadius: '0px' }}
+          onClick={() => { this.removeTag(t); }}
         >
           &times; {t}
         </Button>);
@@ -31,7 +32,9 @@ export default class ActiveTags extends Component {
     if (buttons.length) {
       content.push(<ButtonGroup key={'bg'}>{buttons}</ButtonGroup>);
     } else {
-      content.push(<p key={'p'}><small>No active tags.</small></p>);
+      content.push(<p key={'p'}>
+        <small>No active tags.</small>
+      </p>);
     }
 
     return (<div>

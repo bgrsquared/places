@@ -26,11 +26,19 @@ export const Help = () => (<div>
     (note that we added a whitespace). So we add "New " (without the quotes) in the
     "Starts with ..." section and hit enter. We get:
     <br />
-    <img src={'./assets/ScreenNew.png'} alt={'newPattern'} width={'200'} />
+    <img
+      src={'./assets/ScreenNew.png'}
+      alt={'newPattern'}
+      width={'200'}
+    />
     <br />
     and the respective map:
     <br />
-    <img src={'./assets/ScreenNewUS.jpg'} alt={'newPatternUS'} width={'200'} />
+    <img
+      src={'./assets/ScreenNewUS.jpg'}
+      alt={'newPatternUS'}
+      width={'200'}
+    />
     <br />
     To remove, simply click the pattern button and it will disappear.
   </div>
@@ -43,12 +51,22 @@ export const Help = () => (<div>
     <br />
     We won't go into detail here, but check out these resources to get started:
     <ul>
-      <li><a target={'_blank'} href={'https://en.wikipedia.org/wiki/Regular_expression'}>
-        Wikipedia</a></li>
-      <li><a target={'_blank'}
-             href={'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp'}
-      >
-        MDN</a></li>
+      <li>
+        <a
+          target={'_blank'}
+          href={'https://en.wikipedia.org/wiki/Regular_expression'}
+        >
+          Wikipedia
+        </a>
+      </li>
+      <li>
+        <a
+          target={'_blank'}
+          href={'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp'}
+        >
+          MDN
+        </a>
+      </li>
       <li><a target={'_blank'} href={'http://regexr.com'}>http://regexr.com</a>
         - try the pattern!
       </li>

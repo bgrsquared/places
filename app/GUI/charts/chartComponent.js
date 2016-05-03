@@ -32,7 +32,7 @@ export default class ChartComponent extends Component {
       fullLength: 0,
     };
 
-    for (const tile in tiles) {
+    Object.keys(tiles).forEach(tile => {
       if (tiles[tile].x) {
         const t = tiles[tile];
         const col = colorScale(t.percentage);
@@ -67,7 +67,7 @@ export default class ChartComponent extends Component {
             />);
         }
       }
-    }
+    });
 
     if (offBoundsDot.fullLength) {
       dots.push(
@@ -107,8 +107,9 @@ export default class ChartComponent extends Component {
         height={'100%'}
         viewBox={`0 0 ${size[0]} ${size[1]}`}
       >
-        {fixedNode ? <g transform="translate(4,4)"
-                        onClick={() => {
+        {fixedNode ? <g
+          transform="translate(4,4)"
+          onClick={() => {
             setObject({ fixedNode: false });
           }}
         >

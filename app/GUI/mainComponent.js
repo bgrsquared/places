@@ -49,7 +49,7 @@ export default class mainComponent extends Component {
     const lin = (link && link.length ?
       atob(link) : 'AND');
     const mod = (mode && mode.length ?
-      atob(mode) === 'true' : false);
+    atob(mode) === 'true' : false);
     const reg = (regExp && regExp.length ?
       decodeURIComponent(escape(atob(regExp))) : new RegExp('.*', 'i'));
 
@@ -104,17 +104,19 @@ export default class mainComponent extends Component {
     } else {
       if (layout[0] === 'auto') {
         core.push(<Grid fluid key={'coreFull'}>
-          <Col xs={ar === 'portrait' ? 6 : 12}
-               sm={ar === 'portrait' ? 6 : 12}
-               md={ar === 'portrait' ? 6 : 9}
-               lg={ar === 'portrait' ? 6 : 9}
+          <Col
+            xs={ar === 'portrait' ? 6 : 12}
+            sm={ar === 'portrait' ? 6 : 12}
+            md={ar === 'portrait' ? 6 : 9}
+            lg={ar === 'portrait' ? 6 : 9}
           >
             <ChartContainer />
           </Col>
-          <Col xs={ar === 'portrait' ? 6 : 12}
-               sm={ar === 'portrait' ? 6 : 12}
-               md={ar === 'portrait' ? 6 : 3}
-               lg={ar === 'portrait' ? 6 : 3}
+          <Col
+            xs={ar === 'portrait' ? 6 : 12}
+            sm={ar === 'portrait' ? 6 : 12}
+            md={ar === 'portrait' ? 6 : 3}
+            lg={ar === 'portrait' ? 6 : 3}
           >
             <LegendContainer />
           </Col>
@@ -154,8 +156,9 @@ export default class mainComponent extends Component {
 
     return (
       <div>
-        <Modal onHide={this.closeModal.bind(this)}
-               show={showModal}
+        <Modal
+          onHide={() => this.closeModal()}
+          show={showModal}
         >
           <Modal.Header closeButton>
             <Modal.Title>
@@ -170,12 +173,14 @@ export default class mainComponent extends Component {
           <h1 style={{ marginLeft: '10px', marginTop: '0px' }}>Places!</h1>
           <span style={{ marginLeft: '10px' }}>Find geospatial patterns in place names.</span>
         </div>
-        <div style={{
-          float: 'right',
-          marginRight: '10px',
-          padding: '5px',
-          borderRadius: '10px',
-          border: '1px solid #EEE' }}
+        <div
+          style={{
+            float: 'right',
+            marginRight: '10px',
+            padding: '5px',
+            borderRadius: '10px',
+            border: '1px solid #EEE',
+          }}
         >
           <div style={{ float: 'right' }}>
             <Button
@@ -195,7 +200,11 @@ export default class mainComponent extends Component {
           <br />
           <div style={{ float: 'right' }}>
             <a target={'_blank'} href="http://bgrsquared.com/">
-              <img width={150} src="./assets/Logo.png" alt="bgrsquared"/>
+              <img
+                width={150}
+                src="./assets/Logo.png"
+                alt="bgrsquared"
+              />
             </a>
           </div>
           <br />

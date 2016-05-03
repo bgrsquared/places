@@ -46,6 +46,7 @@ export default function coreReducer(state = initialState, action) {
   switch (action.type) {
 
     case SET_RAW:
+    {
       const myProjection = projection(action.ctry);
       const towns = action.raw.map(t => {
         const [x, y] = myProjection([+t[2], +t[1]]);
@@ -79,7 +80,7 @@ export default function coreReducer(state = initialState, action) {
         source: action.src,
         cacheData: Object.assign({}, state.cacheData, { [action.ctry + action.src]: action.raw }),
       });
-
+    }
     case SET_REGEXP:
     {
       const { router: rrouter, regExp: rE } = action;
@@ -147,8 +148,10 @@ export default function coreReducer(state = initialState, action) {
         });
     }
     case SET_OBJECT:
+    {
       const newObj = action.obj;
       return Object.assign({}, state, newObj);
+    }
     default:
       return state;
   }

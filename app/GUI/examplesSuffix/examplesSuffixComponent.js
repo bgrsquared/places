@@ -47,9 +47,10 @@ export default class ExamplesSuffixContainer extends Component {
 
     return (<div>
       <h4>Examples (Suffixes){' '}
-        <Button bsSize={'xsmall'}
-                bsStyle={'danger'}
-                onClick={ () => this.setState({ show: !show }) }
+        <Button
+          bsSize={'xsmall'}
+          bsStyle={'danger'}
+          onClick={() => this.setState({ show: !show })}
         >
           Toggle Examples
         </Button>

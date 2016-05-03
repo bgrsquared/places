@@ -18,15 +18,17 @@ export const Disclaimer = () => (<div>
     <p>
       <small>Previously: Finland, Norway, Sweden, Hungary</small>
     </p>
-    <hr/>
+    <hr />
     <p>Please{' '}
       <a target={'_blank'} href="https://twitter.com/ilikepiecharts">
         <i className={'fa fa-twitter'}></i>me</a>{' '}
       if
-      you'd like to see new countries (which?) or features (what?).</p>
+      you'd like to see new countries (which?) or features (what?).
+    </p>
     <p>Also, if you have
       feedback on the <strong>data quality per country</strong>,
-      please message me! Thanks!</p>
+      please message me! Thanks!
+    </p>
   </Well>
   <small>Please note: Large amounts of data might be transferred!</small>
   <h5>Data/Licenses</h5>
@@ -75,8 +77,10 @@ export const Disclaimer = () => (<div>
   <h5>Note</h5>
   <p>This is optimized for laptops/desktops,
     i.e. sufficiently large displays and a "pointer"
-    device of sorts (fingers do not count here).</p>
-  <p>Still, it runs on phones and tablets, but buttons may be small...</p>
+    device of sorts (fingers do not count here).
+  </p>
+  <p>Still, it runs on phones and tablets, but buttons may be small...
+  </p>
   <p><strong>Internet Explorer is not supported!</strong></p>
   <hr />
   <h5>Source etc.</h5>
@@ -88,7 +92,8 @@ export const Disclaimer = () => (<div>
     target={'_blank'}
     href={'https://twitter.com/ilikepiecharts'}
   ><strong>Follow me</strong></a>{' '}
-    for updates (performance, features, etc.)!</p>
+    for updates (performance, features, etc.)!
+  </p>
   <p>&copy; 2016 <a
     href={'http://www.bgrsquared.com'}
     target={'_blank'}

@@ -123,7 +123,10 @@ export default class SettingsComponentComponent extends Component {
       return true;
     });
 
-    srcbtns.splice(1, 0, <MenuItem divider key={'divider'}/>);
+    srcbtns.splice(1, 0, <MenuItem
+      divider
+      key={'divider'}
+    />);
     srcbtns.splice(2, 0,
       <MenuItem header key={'warn'}>Note: Stage 2 & 3 can be large files</MenuItem>);
 
@@ -185,7 +188,7 @@ export default class SettingsComponentComponent extends Component {
             id={'sb1'}
             bsStyle={'primary'}
             title={country ? `Country: ${countryNamesMap.get(country)}` :
-          <span><i className={'fa fa-spinner fa-pulse'}></i> Loading...</span>}
+              <span><i className={'fa fa-spinner fa-pulse'}></i> Loading...</span>}
           >
             {btns}
           </DropdownButton>
@@ -213,28 +216,28 @@ export default class SettingsComponentComponent extends Component {
           >
             <MenuItem
               bsSize={'xsmall'}
-              disabled={ radiusMultiplier === 1 / 2 }
+              disabled={radiusMultiplier === 1 / 2}
               onClick={() => { this.setCircles(1 / 2); }}
             >
               S (can be slow)
             </MenuItem>
             <MenuItem
               bsSize={'xsmall'}
-              disabled={ radiusMultiplier === 1 }
+              disabled={radiusMultiplier === 1}
               onClick={() => { this.setCircles(1); }}
             >
               M
             </MenuItem>
             <MenuItem
               bsSize={'xsmall'}
-              disabled={ radiusMultiplier === 2 }
+              disabled={radiusMultiplier === 2}
               onClick={() => { this.setCircles(2); }}
             >
               L
             </MenuItem>
             <MenuItem
               bsSize={'xsmall'}
-              disabled={ radiusMultiplier === 4 }
+              disabled={radiusMultiplier === 4}
               onClick={() => { this.setCircles(4); }}
             >
               XL

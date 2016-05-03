@@ -36,7 +36,7 @@ export default class NewTag extends Component {
       default:
         placeholder = 'Add a tag here';
     }
-    return (<form onSubmit={ (e) => this.handleForm(e) }>
+    return (<form onSubmit={(e) => this.handleForm(e)}>
       <Input
         type={'text'}
         placeholder={placeholder}

@@ -24,7 +24,7 @@ import App from './GUI/mainContainer';
 const routes = (
   <Router history={browserHistory}>
     <Route path="/" component={App}>
-      <Route path="places" component={App}/>
+      <Route path="places" component={App} />
     </Route>
   </Router>
 );

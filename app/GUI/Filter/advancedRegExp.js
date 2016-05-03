@@ -87,15 +87,16 @@ export default class AdvancedRegExp extends Component {
     return (
       <div>Write your own Regular Expression (
         <strong>slashes and 'i' flag are added automatically</strong>)!{' '}
-        <a target={'_blank'}
-           href={'https://developer.mozilla.org/en-US/docs' +
+        <a
+          target={'_blank'}
+          href={'https://developer.mozilla.org/en-US/docs' +
          '/Web/JavaScript/Reference/Global_Objects/RegExp'}
         >(Help)</a>
         <Input
           type={'text'}
           value={regExp}
           bsStyle={this.validationState()}
-          onChange={(e) => {this.handleChange(e);}}
+          onChange={(e) => this.handleChange(e)}
         />
         <Button
           bsSize={'xsmall'}

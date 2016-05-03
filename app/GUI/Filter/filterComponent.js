@@ -28,7 +28,7 @@ export default class FilterComponent extends Component {
       filterText.push(<span key={'nt'}>No places loaded, try relaxing the filter.</span>);
     } else if (filteredTowns.length === allTowns.length) {
       filterText.push(<span key={'at'}>All {allTowns.length} places
-        loaded, no active filter.</span>);
+      loaded, no active filter.</span>);
     } else {
       filterText.push(<div key={'ft'}>
         {filteredTowns.length} of {allTowns.length} places loaded
@@ -120,13 +120,14 @@ export default class FilterComponent extends Component {
           </Row>
           <Row>
             <Col xs={12}>
-              <AdvancedRegExp key={'advFilter'}
-                              regExp={regExp}
-                              setRegExp={setRegExp}
+              <AdvancedRegExp
+                key={'advFilter'}
+                regExp={regExp}
+                setRegExp={setRegExp}
               />
             </Col>
           </Row>
-          <hr/>
+          <hr />
           <Row>
             <Col xs={12}>
               <Well>
