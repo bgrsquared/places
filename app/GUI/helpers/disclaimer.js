@@ -8,8 +8,7 @@ export const Disclaimer = () => (<div>
       News
     </h5>
     <p>
-      <strong>Experimental:</strong> You can now copy/paste URLs of your favourite examples!
-      (Countries and std/adv filters are stored).
+      Click to freeze a node (click it again (or specific button) to release it!)
     </p>
     <p>
       Most recently added countries: <strong>Iran</strong> (experimental, due to Farsi)
