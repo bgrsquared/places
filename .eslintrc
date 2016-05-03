@@ -1,9 +1,15 @@
 {
   "extends": "airbnb",
   "rules": {
+    "indent": [0],
+    "no-param-reassign": [2, { "props": false }],
+    "react/no-multi-comp": [0],
+    "jsx-a11y/img-uses-alt": [0],
+    "jsx-a11y/redundant-alt": [0],
+    "jsx-a11y/valid-aria-role": [0],
+
     "no-loop-func": [0],
     "no-case-declarations": [0],
-    "react/no-multi-comp": [0],
     "react/jsx-indent-props": [0],
     "react/jsx-no-bind": [0],
     "react/jsx-space-before-closing": [0]

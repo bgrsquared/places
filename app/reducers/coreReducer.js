@@ -26,10 +26,12 @@ const initialState = {
     any: new Set(),
   },
   activeNode: {
+    id: 0,
     names: [],
     length: 0,
     fullLength: 0,
   },
+  fixedNode: false,
   regExp: new RegExp('.*', 'i'),
   filterLink: 'AND',
   cacheData: {},
@@ -42,6 +44,7 @@ const initialState = {
 export default function coreReducer(state = initialState, action) {
   const { allTowns } = state;
   switch (action.type) {
+
     case SET_RAW:
       const myProjection = projection(action.ctry);
       const towns = action.raw.map(t => {
@@ -68,14 +71,16 @@ export default function coreReducer(state = initialState, action) {
         filteredTowns: fiTo,
         filterObject: state.filterObject,
         hexbin: buildHexbins(towns, fiTo, action.ctry, state.radiusMultiplier),
-        activeNode: initialState.activeNode,
+        activeNode: state.activeNode,
         appReady: true,
         regExp: state.regExp,
         country: action.ctry,
         source: action.src,
         cacheData: Object.assign({}, state.cacheData, { [action.ctry + action.src]: action.raw }),
       });
+
     case SET_REGEXP:
+    {
       const { router: rrouter, regExp: rE } = action;
       if (rrouter) {
         setTimeout(() =>
@@ -89,6 +94,11 @@ export default function coreReducer(state = initialState, action) {
           }), 100);
       }
       const filt = filteredDataRegExp(allTowns, rE);
+      const hexbin = buildHexbins(allTowns, filt, state.country, state.radiusMultiplier);
+      let activeNode = initialState.activeNode;
+      if (hexbin.tiles && hexbin.tiles[state.activeNode.id]) {
+        activeNode = hexbin.tiles[state.activeNode.id];
+      }
       return Object.assign({}, state,
         {
           filteredTowns: filt,
@@ -98,10 +108,12 @@ export default function coreReducer(state = initialState, action) {
             any: new Set([]),
           },
           hexbin: buildHexbins(allTowns, filt, state.country, state.radiusMultiplier),
-          activeNode: initialState.activeNode,
+          activeNode,
           regExp: rE,
         });
+    }
     case SET_FILTER:
+    {
       const { obj, link, router } = action;
       if (router) {
         setUrl(router, state.country, {
@@ -118,16 +130,21 @@ export default function coreReducer(state = initialState, action) {
         newLink.filterLink = link;
       }
       const { fT, regExp } = filteredData(allTowns, obj, link || state.filterLink);
-
+      const hexbin = buildHexbins(allTowns, fT, state.country, state.radiusMultiplier);
+      let activeNode = initialState.activeNode;
+      if (hexbin.tiles && hexbin.tiles[state.activeNode.id]) {
+        activeNode = hexbin.tiles[state.activeNode.id];
+      }
       return Object.assign({}, state,
         newLink,
         {
           filteredTowns: fT,
           filterObject: obj,
-          hexbin: buildHexbins(allTowns, fT, state.country, state.radiusMultiplier),
-          activeNode: initialState.activeNode,
+          hexbin,
+          activeNode,
           regExp,
         });
+    }
     case SET_OBJECT:
       const newObj = action.obj;
       return Object.assign({}, state, newObj);

@@ -7,7 +7,10 @@ import { hexbinParams } from '../../config/globals';
 export default class ChartComponent extends Component {
   render() {
     const { app, setObject } = this.props;
-    const { hexbin, country, radiusMultiplier, activeNode, circleWeighted } = app;
+    const {
+      hexbin, country, radiusMultiplier,
+      activeNode, fixedNode, circleWeighted,
+    } = app;
     const { tiles, maxPercent, maxPlaces } = hexbin;
     const dots = [];
     const hbP = hexbinParams.get(country);
@@ -43,16 +46,24 @@ export default class ChartComponent extends Component {
           // in bounds
           const act = (activeNode.id === t.id);
           dots.push(
-            <circle key={`${t.x} ${t.y}`}
-                    className={'fillTransition'}
-                    stroke={act ? 'orangered' : 'white'}
-                    strokeWidth={act ? 1 : 0}
-                    cx={t.x}
-                    cy={t.y}
-                    r={radScale(t.fullLength) * radius * 5 / 12 * radiusMultiplier}
-                    style={{ fill: col }}
-                    onMouseOver={() => { setObject({ activeNode: t }); }}
-                    onClick={() => { setObject({ activeNode: t }); }}
+            <circle
+              key={`${t.x} ${t.y}`}
+              className={'fillTransition'}
+              stroke={act ? 'orangered' : 'white'}
+              strokeWidth={act ? 1 : 0}
+              cx={t.x}
+              cy={t.y}
+              r={radScale(t.fullLength) * radius * 5 / 12 * radiusMultiplier}
+              style={{ fill: col }}
+              onMouseOver={() => {
+                if (!fixedNode) {
+                  setObject({ activeNode: t });
+                }
+              }}
+              onClick={() => {
+                setObject({ activeNode: t,
+                  fixedNode: (!fixedNode || !act) });
+              }}
             />);
         }
       }
@@ -60,14 +71,22 @@ export default class ChartComponent extends Component {
 
     if (offBoundsDot.fullLength) {
       dots.push(
-        <circle key={'OffBounds'}
-                className={'fillTransition'}
-                cx={size[0] - 4 * radius * 5 / 6 * radiusMultiplier}
-                cy={size[1] - 4 * radius * 5 / 6 * radiusMultiplier}
-                r={4 * radius * 5 / 6 * radiusMultiplier}
-                style={{ fill: colorScale(offBoundsDot.length / offBoundsDot.fullLength) }}
-                onMouseOver={() => { setObject({ activeNode: offBoundsDot }); }}
-                onClick={() => { setObject({ activeNode: offBoundsDot }); }}
+        <circle
+          key={'OffBounds'}
+          className={'fillTransition'}
+          cx={size[0] - 4 * radius * 5 / 6 * radiusMultiplier}
+          cy={size[1] - 4 * radius * 5 / 6 * radiusMultiplier}
+          r={4 * radius * 5 / 6 * radiusMultiplier}
+          style={{ fill: colorScale(offBoundsDot.length / offBoundsDot.fullLength) }}
+          onMouseOver={() => {
+            if (!fixedNode) {
+              setObject({ activeNode: offBoundsDot });
+            }
+          }}
+          onClick={() => {
+            setObject({ activeNode: offBoundsDot,
+              fixedNode: (!fixedNode || activeNode.id !== offBoundsDot.id) });
+          }}
         />);
       dots.push(
         <text
