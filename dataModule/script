@@ -29,6 +29,9 @@
 # CODE="NO"
 # CODE="FI"
 # CODE="HU"
+# CODE="TW"
+# CODE="AT"
+# CODE="SG"
 CODE="IR"
 
 mkdir -p ./${CODE}
