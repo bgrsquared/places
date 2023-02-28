@@ -37,10 +37,10 @@ CODE="IR"
 mkdir -p ./${CODE}
 
 # Inhabited and Filtered
-curl --data "$(sed s/LOCATION/${CODE}/g ./overpassScripts/scriptInhabitedFiltered)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataInhabFiltered${CODE}.json
+curl --data "$(sed s/LOCATION/${CODE}/g ./overpassScripts/scriptInhabitedFiltered.overpassql)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataInhabFiltered${CODE}.json
 
 # Inhabited (unfiltered)
-curl --data "$(sed s/LOCATION/${CODE}/g ./overpassScripts/scriptInhabited)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataInhab${CODE}.json
+curl --data "$(sed s/LOCATION/${CODE}/g ./overpassScripts/scriptInhabited.overpassql)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataInhab${CODE}.json
 
 # All places :)
-curl --data "$(sed s/LOCATION/${CODE}/g ./overpassScripts/scriptAll)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataAll${CODE}.json
+curl --data "$(sed s/LOCATION/${CODE}/g ./overpassScripts/scriptAll.overpassql)" "http://overpass-api.de/api/interpreter" | sed s/\"//g | awk -F# 'BEGIN {print "["} NR==1 {print "[\""$1"\","$2","$3"]"} NR>1 {print ",[\""$1"\","$2","$3"]"} END { print "]"}' > ./${CODE}/dataAll${CODE}.json
